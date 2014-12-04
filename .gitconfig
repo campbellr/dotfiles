@@ -1,0 +1,14 @@
+[user]
+	name = Ryan Campbell
+	email = Ryan.Campbell@emc.com
+[color]
+    ui = auto
+[alias]
+    l = log --graph --decorate --all
+    graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+[log]
+    decorate = short
+[http]
+	sslVerify = false
+[rebase]
+	autosquash = true

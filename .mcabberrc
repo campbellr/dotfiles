@@ -1,0 +1,35 @@
+set jid = campbr9@xmpp
+set username = campbr9
+#set password =
+set disable_random_resource = 1
+set resource = Laptop
+set server = xmpp.spgear.lab.emc.com
+set ssl = 1
+set ssl_ignore_checks = 1
+set port = 5223
+
+set logging = 1
+set load_logs = 1
+
+set log_muc_conf = 1
+set load_muc_logs = 1
+
+set events_command = ~/.mcabber/event.sh
+set events_ignore_active_window = 0
+set events_log_files = 1
+set events_log_dir = ~/.mcabber/event_files
+
+color muc * on
+set roster_display_filter = ofdna
+
+# ctrl-PGUP/DN -> move in contact list
+# tmux
+bind M339 = roster up
+bind M338 = roster down
+# non-tmux
+bind 552 = roster up
+bind 547 = roster down
+
+#PGUP/DN -> scroll in message history
+bind 339 = buffer up
+bind 338 = buffer down
