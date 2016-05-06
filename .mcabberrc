@@ -16,8 +16,8 @@ set load_muc_logs = 1
 
 set events_command = ~/.mcabber/event.sh
 set events_ignore_active_window = 0
-set events_log_files = 1
-set events_log_dir = ~/.mcabber/event_files
+set event_log_files = 1
+set event_log_dir = ~/.mcabber/event_files
 
 color muc * on
 set roster_display_filter = ofdna
@@ -33,3 +33,6 @@ bind 547 = roster down
 #PGUP/DN -> scroll in message history
 bind 339 = buffer up
 bind 338 = buffer down
+
+# aliases
+alias pm = room privmsg
