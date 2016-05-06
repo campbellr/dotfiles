@@ -30,6 +30,7 @@ endif
 
 au BufRead,BufNewFile *.wiki set filetype=mediawiki
 au BufRead,BufNewFile *.yml,*.yaml set filetype=yaml
+"au BufRead,BufNewFile *.tap set filetype=tap
 
 
 set showmatch		" Show matching brackets.
@@ -129,4 +130,16 @@ let g:vipyut_openQuickFix=0
 
 let g:ropevim_goto_def_newwin=1
 
+" display the syntax highlighting groups for the item under the cursor
+map <F8> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+            \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+            \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
+
+set switchbuf=usetab,newtab
+
+autocmd! bufwritepost .vimrc source $MYVIMRC
+map <silent> <Leader>ts "=strftime("%Y-%m-%d %I:%M")<CR>P
+
+set colorcolumn=80
+highlight ColorColumn ctermbg=DarkGrey
