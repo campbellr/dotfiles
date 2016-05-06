@@ -1,6 +1,7 @@
 [user]
 	name = Ryan Campbell
 	email = Ryan.Campbell@emc.com
+	signingkey = 99C2AFE6
 [color]
     ui = auto
 [alias]
@@ -12,3 +13,5 @@
 	sslVerify = false
 [rebase]
 	autosquash = true
+[credential]
+	helper = cache
