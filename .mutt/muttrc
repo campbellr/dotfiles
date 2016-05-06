@@ -1,0 +1,116 @@
+# A basic .muttrc for use with IMAP email
+
+# Change the following six lines to match your Gmail account details
+set imap_user = "campbr9"
+set imap_pass = "" # leave blank for prompt
+set smtp_url = "smtp://mailhub.emc.com"
+set smtp_pass = "" # leave blank for prompt
+set from = "Ryan.Campbell@emc.com"
+set realname = "Ryan Campbell"
+
+# Change the following line to a different editor you prefer (and update the Dockerfile accordingly, of course).
+set editor = "vim"
+
+# I like seeing some headers. :)
+ignore *
+unignore date subject x- user-agent posted-to content-type
+unignore to cc bcc reply-to from
+set edit_headers = yes
+
+# TODO figure out how to use the sidebar more effectively :)
+set sidebar_visible = yes
+set sidebar_sort = yes
+#set sidebar_newmail_only = yes
+#color sidebar_new yellow default
+
+# show time in addition to date received
+set index_format = "%4C %Z %{%b %d %R} %-15.15L (%4L) %s"
+
+bind index,pager K sidebar-prev
+bind index,pager J sidebar-next
+bind index,pager L sidebar-open
+
+set pager_index_lines = 8
+
+# Tianon keybindings and settings, because he's special.
+bind pager <up> previous-line
+bind pager <down> next-line
+set resolve = no # uh, don't randomly take me to other messages when I do things
+
+# Basic config, you can leave this as is
+set folder = "imaps://email.emc.com:993"
+set spoolfile = "+INBOX"
+
+mailboxes = +INBOX \
+            +INBOX/To\ Me \
+            +INBOX/ALL_SVE \
+            +INBOX/ALL_VPLEX \
+            +INBOX/ARCH \
+            +INBOX/ASK_VPLEXERS \
+            +INBOX/DEV \
+            +INBOX/Dolphin\ Build\ Status \
+            +INBOX/EMC\ spam \
+            +INBOX/gitlab \
+            +INBOX/SCRUM \
+            +INBOX/spgear \
+            +INBOX/UI\ Guild \
+            +INBOX/VATS_GUILD \
+            +INBOX/VPLEX_TESTING
+
+set imap_check_subscribed
+set imap_idle = yes
+set hostname = emc.com
+set mail_check = 60
+set timeout = 300
+set imap_keepalive = 300
+set postponed = "+Drafts"
+set record = "+Sent Items"
+
+set header_cache=~/.mutt/cache/headers
+set message_cachedir=~/.mutt/cache/bodies
+set certificate_file=~/.mutt/certificates
+
+set move = no
+set include
+set sort = 'reverse-threads'
+set sort_aux = 'last-date-received'
+set auto_tag = yes
+
+ignore "Authentication-Results:"
+ignore "DomainKey-Signature:"
+ignore "DKIM-Signature:"
+hdr_order Date From To Cc
+alternative_order text/calendar text/plain text/html *
+auto_view text/html text/calendar
+
+bind editor <Tab> complete-query
+bind editor ^T complete
+bind editor <space> noop
+
+bind index,pager G imap-fetch-mail
+
+set mailcap_path = ~/.mutt/mailcap
+
+# Gmail-style keyboard shortcuts
+macro index,pager Gi "<change-folder>=INBOX<enter>" "Go to Inbox"
+macro index,pager Gm "<change-folder>=INBOX/To Me<enter>" "Go to To Me"
+macro index,pager Gd "<change-folder>=Drafts<enter>" "Go to Drafts"
+macro index,pager Gs "<change-folder>=Sent Items<enter>" "Go to Sent Mail"
+
+macro index,pager a "<enter-command>unset resolve<enter><enter-command>unset trash<enter><clear-flag>N<enter-command>set resolve<enter><delete-message><enter>"
+macro index,pager d ";s+Deleted Items<enter><enter>" "Trash"
+macro index,pager u ";s+Inbox<enter><enter>" "Move to Inbox"
+
+macro index,pager \cb '<pipe-message> urlscan<Enter>' 'Call urlscan to extract urls out of a message'
+macro attach,compose \cb '<pipe-message> urlscan<Enter>' 'Call urlscan to extract urls out of a message'
+
+# add calendar invite to calcurse
+macro index,pager ",m" ":unset_wait_key\n | add-to-calcurse<enter><exit>"
+
+macro index A \
+    "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" \
+    "Mark all new as read"
+
+# colors
+source ~/.mutt/mutt-colors-solarized-dark-16.muttrc
+source ~/.mutt/mutt-patch-highlighting.muttrc
