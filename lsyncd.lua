@@ -7,5 +7,8 @@ sync {
     default.rsync,
     source = "/localhome/campbr9",
     target = "/home/campbr9",
-    delete = false,
+    delete = true,
+    exclude = {
+        "vmware"
+    }
 }
