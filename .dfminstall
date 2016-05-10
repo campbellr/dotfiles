@@ -1,7 +1,9 @@
 README.md skip
 bin skip
 .gitignore skip
+.gitmodules skip
 .config recurse
 .ssh recurse
 .mcabber recurse
 .calcurse recurse
+.mutt/cache skip
