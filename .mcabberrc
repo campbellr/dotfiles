@@ -19,6 +19,8 @@ set events_ignore_active_window = 0
 set event_log_files = 1
 set event_log_dir = ~/.mcabber/event_files
 
+set statefile = ~/.mcabber/mcabber.state
+
 color muc * on
 set roster_display_filter = ofdna
 
