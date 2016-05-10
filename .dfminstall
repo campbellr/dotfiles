@@ -1,5 +1,6 @@
 README.md skip
 bin skip
+.gitignore skip
 .config recurse
 .ssh recurse
 .mcabber recurse
