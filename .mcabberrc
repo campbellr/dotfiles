@@ -40,3 +40,4 @@ bind 338 = buffer down
 alias pm = room privmsg
 alias tf = say (ノಠ益ಠ)ノ彡┻━┻
 alias coffee = say ☕
+alias n = roster unread_next
