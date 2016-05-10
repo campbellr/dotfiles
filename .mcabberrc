@@ -1,6 +1,5 @@
 set jid = campbr9@xmpp
 set username = campbr9
-#set password =
 set disable_random_resource = 1
 set resource = Laptop
 set server = xmpp.spgear.lab.emc.com
@@ -41,3 +40,5 @@ alias pm = room privmsg
 alias tf = say (ノಠ益ಠ)ノ彡┻━┻
 alias coffee = say ☕
 alias n = roster unread_next
+
+source ~/.mcabberrc.local
