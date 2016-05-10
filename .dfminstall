@@ -3,3 +3,4 @@ bin skip
 .config recurse
 .ssh recurse
 .mcabber recurse
+.calcurse recurse
