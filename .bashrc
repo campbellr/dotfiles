@@ -10,6 +10,7 @@ case $- in
       *) return;;
 esac
 
+export PROMPT_DIRTRIM=3
 export EDITOR="vim"
 export BROWSER="firefox"
 export PYTHONSTARTUP=$HOME/.pythonrc
