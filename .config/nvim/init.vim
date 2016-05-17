@@ -221,5 +221,9 @@ let g:go_oracle_scope="gitlab.spgear.lab.emc.com/dolphin/go-mongo-proxy"
 cmap w!! w !sudo tee > /dev/null %
 
 
+" vim-argwrap
+let g:argwrap_tail_comma = 1
+nnoremap <silent> <leader>a :ArgWrap<CR>
+
 " Support Format-Flowed in email (mutt).
 autocmd FileType mail setlocal fo+=aw tw=72

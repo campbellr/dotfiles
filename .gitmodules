@@ -103,3 +103,8 @@
     path = .config/nvim/bundle/vim-tap
     url = git@gitlab.spgear.lab.emc.com:campbr9/vim-tap.git
     ignore = untracked
+
+[submodule ".config/nvim/bundle/vim-argwrap"]
+	path = .config/nvim/bundle/vim-argwrap
+    url = https://github.com/FooSoft/vim-argwrap
+    ignore = untracked
