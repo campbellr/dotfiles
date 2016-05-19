@@ -215,6 +215,8 @@ nmap <F8> :TagbarToggle<CR>
 
 " vim-go
 let g:go_oracle_scope="gitlab.spgear.lab.emc.com/dolphin/go-mongo-proxy"
+" open test/implementation file in a vsplit instead of the same window
+let g:go_alternate_mode = "vsplit"
 
 
 " Allow saving files as sudo in a non-privledged vim session
