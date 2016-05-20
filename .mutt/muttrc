@@ -13,9 +13,14 @@ set editor = "vim"
 
 # I like seeing some headers. :)
 ignore *
-unignore date subject x- user-agent posted-to content-type
+unignore date subject user-agent posted-to content-type
 unignore to cc bcc reply-to from
 set edit_headers = yes
+
+# skip to compose when replying
+set fast_reply
+set tilde
+set pager_stop
 
 # TODO figure out how to use the sidebar more effectively :)
 set sidebar_visible = yes
@@ -31,6 +36,9 @@ bind index,pager J sidebar-next
 bind index,pager L sidebar-open
 
 set pager_index_lines = 8
+
+# truncate long To: and Cc: lists (and also a few other minor cleanups)
+set display_filter=mail-to-filter
 
 # Tianon keybindings and settings, because he's special.
 bind pager <up> previous-line
