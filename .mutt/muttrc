@@ -62,6 +62,7 @@ mailboxes = +INBOX \
             +INBOX/Dolphin\ Build\ Status \
             +INBOX/EMC\ spam \
             +INBOX/gitlab \
+            +INBOX/LiveWire \
             +INBOX/SCRUM \
             +INBOX/spgear \
             +INBOX/Tracker \
