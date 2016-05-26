@@ -15,3 +15,5 @@
 	autosquash = true
 [credential]
 	helper = cache
+[core]
+	pager = less -R -x1,5
