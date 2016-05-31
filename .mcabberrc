@@ -1,4 +1,4 @@
-set jid = campbr9@xmpp
+set jid = campbr9
 set username = campbr9
 set disable_random_resource = 1
 set resource = Laptop
@@ -23,6 +23,8 @@ set statefile = ~/.mcabber/mcabber.state
 color muc * on
 set roster_display_filter = ofdna
 
+set color_background = black
+
 # ctrl-PGUP/DN -> move in contact list
 # tmux
 bind M339 = roster up
@@ -38,6 +40,7 @@ bind 338 = buffer down
 # aliases
 alias pm = room privmsg
 alias tf = say (ノಠ益ಠ)ノ彡┻━┻
+alias ts = ┬──┬ ノ( ゜-゜ノ)
 alias coffee = say ☕
 alias n = roster unread_next
 
