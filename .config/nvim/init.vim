@@ -88,6 +88,7 @@ let g:Grep_Default_Options = '-R'
 " Probe options
 let g:probe_use_wildignore = 1
 let g:probe_mappings = {'accept_tab': '<enter>'}
+let g:probe_use_gitignore = 1
 
 "" Folding
 set foldmethod=indent
@@ -228,4 +229,4 @@ let g:argwrap_tail_comma = 1
 nnoremap <silent> <leader>a :ArgWrap<CR>
 
 " Support Format-Flowed in email (mutt).
-autocmd FileType mail setlocal fo+=aw tw=72
+"autocmd FileType mail setlocal fo+=aw tw=72
