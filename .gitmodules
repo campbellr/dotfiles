@@ -108,3 +108,8 @@
 	path = .config/nvim/bundle/vim-argwrap
     url = https://github.com/FooSoft/vim-argwrap
     ignore = untracked
+
+[submodule ".config/nvim/bundle/vim-coffee-script"]
+	path = .config/nvim/bundle/vim-coffee-script
+    url = https://github.com/kchmck/vim-coffee-script
+    ignore = untracked
