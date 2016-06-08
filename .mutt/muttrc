@@ -93,8 +93,11 @@ ignore "Authentication-Results:"
 ignore "DomainKey-Signature:"
 ignore "DKIM-Signature:"
 hdr_order Date From To Cc
-alternative_order text/calendar text/plain text/html *
 auto_view text/html text/calendar
+
+# force html viewing for FUDForum emails since their text/plain sucks
+message-hook . 'unalternative_order *; alternative_order text/calendar text/plain text/html *'
+message-hook '~h "X-Mailer: FUDforum"' 'unalternative_order *; alternative_order text/html text/plain'
 
 # gpg stuff
 set crypt_replysign=yes
