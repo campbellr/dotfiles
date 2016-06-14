@@ -17,3 +17,5 @@
 	helper = cache
 [core]
 	pager = less -R -x1,5
+[diff]
+	compactionHeuristic = true
