@@ -218,6 +218,12 @@ nmap <F8> :TagbarToggle<CR>
 let g:go_oracle_scope="gitlab.spgear.lab.emc.com/dolphin/go-mongo-proxy"
 " open test/implementation file in a vsplit instead of the same window
 let g:go_alternate_mode = "vsplit"
+let g:go_fmt_command = "goimports"
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_term_enabled = 1
+
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
 
 " Allow saving files as sudo in a non-privledged vim session
@@ -230,3 +236,6 @@ nnoremap <silent> <leader>a :ArgWrap<CR>
 
 " Support Format-Flowed in email (mutt).
 "autocmd FileType mail setlocal fo+=aw tw=72
+
+" deoplete-go
+let g:deoplete#sources#go#gocode_binary = '/localhome/campbr9/go/bin/gocode'
