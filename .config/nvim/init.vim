@@ -174,3 +174,10 @@ nnoremap <silent> <leader>a :ArgWrap<CR>
 
 " deoplete-go
 let g:deoplete#sources#go#gocode_binary = '/localhome/campbr9/go/bin/gocode'
+
+" only indent html 2 spaces
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType gohtmltmpl setlocal shiftwidth=2 tabstop=2
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+
+let g:markdown_composer_autostart = 1
