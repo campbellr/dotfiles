@@ -3,6 +3,7 @@
 # for examples
 
 export TZ='America/Edmonton'
+export LANG=en_CA.UTF-8
 
 # If not running interactively, don't do anything
 case $- in
@@ -10,7 +11,7 @@ case $- in
       *) return;;
 esac
 
-export PROMPT_DIRTRIM=3
+export PROMPT_DIRTRIM=1
 export EDITOR="vim"
 export BROWSER="firefox"
 export PYTHONSTARTUP=$HOME/.pythonrc
@@ -24,6 +25,9 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_SCRIPT=$HOME/.local/bin/virtualenvwrapper.sh
 source $VIRTUALENVWRAPPER_SCRIPT
+
+# enable vi-like keybindings
+set -o vi
 
 # turn off flow control (i keep accidentally freezing my terminal with ^s)
 stty -ixon
