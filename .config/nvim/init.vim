@@ -47,19 +47,7 @@ set backspace=indent,eol,start "make backspace work properly
 
 set noincsearch
 
-" enable python omnicomplete
-"autocmd FileType python set omnifunc=pythoncomplete#Complete
-"let g:SuperTabDefaultCompletionType = "context"
-
 set completeopt=menuone,longest,preview
-
-" Enable pylint checking (requires pylint.vim plugin in ~/.vim/compiler/
-" By default, this opens a 'Quick Fix' window  with pylint violations every time the buffer is written
-"autocmd FileType python compiler pylint
-
-" highlight lines over 120 characters
-"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-"match OverLength /\%>121v.\+/
 
 " Removes whitespace before saving
 autocmd BufWritePre * :%s/\s\+$//e
@@ -67,16 +55,6 @@ autocmd BufWritePre * :%s/\s\+$//e
 " Removes whitespace at EOF
 autocmd BufWritePre *.py :%s/\($\n\s*\)\+\%$//e
 
-" F3 will automatically open the corresponding unit test module
-nmap <F3> :VipyutVSplit<cr>
-" don't run pylint on write
-" let g:pylint_onwrite = 0
-
-" F4 will automatically run pylint
-" nmap <F4> :Pylint<CR>
-
-map <F5> :mksession! ~/.vim_session <cr> " Quick write session with F5
-map <F6> :source ~/.vim_session <cr>     " And load session with F6
 
 set wildmode=longest:full
 set wildmenu
@@ -95,43 +73,12 @@ set foldmethod=indent
 set foldnestmax=2       " don't nest more than 2 folds
 set foldlevel=10        " start with all folds open
 
-" How do I do this!
-":PyProj ~/.chimera.vim
-"
 
 " status line
 set laststatus=2
 set title
 set statusline=%{fugitive#statusline()}\ %<%f%h%m%r%=%-14.(%l,%c%V%)\ %P
 
-
-" python-mode
-let g:pymode_paths = ['$HOME/git/chimera/', '.']
-let g:pymode_doc = 1
-let g:pymode_rope = 1
-let g:pymode_motion = 1
-let g:pymode_rope_auto_project = 1
-let g:pymode_lint = 1
-let g:pymode_lint_checker = "pylint,pep8,pyflakes"
-let g:pymode_lint_config = "$HOME/.pylintrc"
-let g:pymode_lint_write = 1
-let g:pymode_lint_cwindow = 1
-let g:pymode_lint_message = 1
-let g:pymode_lint_signs = 1
-let g:pymode_virtualenv = 1
-let g:pymode_syntax_all = 1
-let g:pymode_utils_whitespace = 1
-
-
-let g:syntastic_python_checkers=['flake8', 'pep257']
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_aggregate_errors=1
-
-let g:vipyut_openOutputOnFail=1
-let g:vipyut_openQuickFix=0
-
-let g:ropevim_goto_def_newwin=1
 
 " display the syntax highlighting groups for the item under the cursor
 map <F8> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
@@ -159,22 +106,10 @@ let g:neomake_go_enabled_makers = ['go', 'govet']
 
 autocmd! BufWritePost * Neomake
 
-let g:rut_projects = [{
-      \'pattern': '/vats$',
-      \'test_dir': 'tests',
-      \'source2unit': ['\v.*/vats/(.*)/([^/]*)', '\1/test_\2'],
-      \'unit2source': ['\v.*/tests/(.*)/test_([^/]*)', 'vats/\1/\2'],
-      \'runner': 'nosetests',
-      \'errorformat': '%C %.%#,%A  File "%f"\, line %l%.%#,%Z%[%^ ]%\@=%m',
-\}]
-
-let g:rut_async = 1
 
 " word wrap
 " set wrap
 " set textwidth=79
-
-"set colorcolumn=80
 
 autocmd! BufWritePost .nvimrc source $MYVIMRC
 
