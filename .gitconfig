@@ -7,6 +7,8 @@
 [alias]
     l = log --graph --decorate --all
     graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+    hist = log --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --date=short
+	dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy  | less --tabs=4 -RFX; }; f"
 [log]
     decorate = short
 [http]
@@ -18,4 +20,8 @@
 [core]
 	pager = less -R -x1,5
 [diff]
-	compactionHeuristic = true
+    compactionHeuristic = true
+[fsck]
+    zeroPaddedFilemode = ignore
+[fetch]
+	prune = true

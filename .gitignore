@@ -1,3 +1,4 @@
 .netrwhist
 *~
 .mutt/cache
+.config/nvim/undodir/

@@ -32,6 +32,10 @@ au BufRead,BufNewFile *.wiki set filetype=mediawiki
 au BufRead,BufNewFile *.yml,*.yaml set filetype=yaml
 "au BufRead,BufNewFile *.tap set filetype=tap
 
+" persistent undo!
+set undodir=~/.config/nvim/undodir
+set undofile
+
 
 set showmatch		" Show matching brackets.
 set mouse=a		    " Enable mouse usage (all modes) Much more useful if
@@ -50,7 +54,9 @@ set noincsearch
 set completeopt=menuone,longest,preview
 
 " Removes whitespace before saving
-autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre *.py :%s/\s\+$//e
+autocmd BufWritePre *.vue :%s/\s\+$//e
+autocmd BufWritePre *.js :%s/\s\+$//e
 
 " Removes whitespace at EOF
 autocmd BufWritePre *.py :%s/\($\n\s*\)\+\%$//e
@@ -179,5 +185,22 @@ let g:deoplete#sources#go#gocode_binary = '/localhome/campbr9/go/bin/gocode'
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType gohtmltmpl setlocal shiftwidth=2 tabstop=2
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType vue.html.javascript.css setlocal shiftwidth=2 tabstop=2
+
 
 let g:markdown_composer_autostart = 1
+
+" Coverity stuff
+"
+let g:neomake_java_coverity_maker = {
+ \ 'exe': 'cov-run-desktop',
+ \ 'args': ['--disconnected', 
+ \          '--dir', '/tmp/ui_build1',
+ \          '--text-output-style=oneline', '%'],
+ \ 'errorformat': '%f:%l:\\ %m',
+ \ }
+
+let g:neomake_java_enabled_makers = ['coverity']
+
+

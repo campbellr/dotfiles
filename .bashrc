@@ -3,7 +3,9 @@
 # for examples
 
 export TZ='America/Edmonton'
+export LC_ALL=en_CA.UTF-8
 export LANG=en_CA.UTF-8
+export LANGUAGE=en_CA.UTF-8
 
 # If not running interactively, don't do anything
 case $- in
@@ -11,7 +13,7 @@ case $- in
       *) return;;
 esac
 
-export PROMPT_DIRTRIM=1
+export PROMPT_DIRTRIM=3
 export EDITOR="vim"
 export BROWSER="firefox"
 export PYTHONSTARTUP=$HOME/.pythonrc
@@ -32,7 +34,25 @@ set -o vi
 # turn off flow control (i keep accidentally freezing my terminal with ^s)
 stty -ixon
 
-PS1='\h:\w\[\033[32m\]$(__git_ps1) \[\033[0m\]$ '
+function timer_start {
+  timer=${timer:-$SECONDS}
+}
+
+function timer_stop {
+  timer_show=$(($SECONDS - $timer))
+  unset timer
+}
+
+trap 'timer_start' DEBUG
+
+if [ "$PROMPT_COMMAND" == "" ]; then
+  PROMPT_COMMAND="timer_stop"
+else
+  PROMPT_COMMAND="$PROMPT_COMMAND; timer_stop"
+fi
+
+
+PS1='[last: ${timer_show}s][\w]\[\033[32m\]$(__git_ps1) \[\033[0m\]$ '
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -105,3 +125,14 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+PATH="/localhome/campbr9/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/localhome/campbr9/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/localhome/campbr9/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/localhome/campbr9/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/localhome/campbr9/perl5"; export PERL_MM_OPT;
+
+source ~/.aws.env
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

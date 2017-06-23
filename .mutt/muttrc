@@ -52,23 +52,27 @@ my_hdr Bcc: Ryan.Campbell@emc.com
 set folder = "imaps://email.emc.com:993"
 set spoolfile = "+INBOX"
 
-mailboxes = +INBOX \
-            +INBOX/To\ Me \
+mailboxes = +asdwiki \
             +INBOX/ALL_SVE \
             +INBOX/ALL_VPLEX \
             +INBOX/ARCH \
             +INBOX/ASK_VPLEXERS \
+            +INBOX/cloudfoundry \
+            +INBOX/CI \
             +INBOX/DEV \
             +INBOX/Dolphin\ Build\ Status \
             +INBOX/EMC\ spam \
             +INBOX/gitlab \
+            +INBOX/go-mongo-proxy \
             +INBOX/LiveWire \
+            +mattermost \
             +INBOX/SCRUM \
             +INBOX/spgear \
+            +INBOX/To\ Me \
             +INBOX/Tracker \
             +INBOX/UI\ Guild \
             +INBOX/VATS_GUILD \
-            +INBOX/VPLEX_TESTING
+            +INBOX/VPLEX_TESTING \
 
 #set imap_check_subscribed
 set imap_idle = yes
