@@ -1,10 +1,10 @@
 runtime! debian.vim
 
 set t_Co=256
-set background=light
+set background=dark
 
 " This color scheme is great for dark backgrounds
-colorscheme desert
+colorscheme desert256
 " colorscheme solarized
 
 " pathogen load
