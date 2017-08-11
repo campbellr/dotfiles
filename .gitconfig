@@ -25,3 +25,5 @@
     zeroPaddedFilemode = ignore
 [fetch]
 	prune = true
+[commit]
+	gpgsign = true
