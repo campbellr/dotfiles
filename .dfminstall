@@ -7,3 +7,4 @@ bin skip
 .mcabber recurse
 .calcurse recurse
 .mutt/cache skip
+.config/bugwarrior/bugwarrior.log skip

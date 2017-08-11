@@ -2,3 +2,4 @@
 *~
 .mutt/cache
 .config/nvim/undodir/
+.config/bugwarrior/bugwarrior.log
