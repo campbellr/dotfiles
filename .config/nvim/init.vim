@@ -203,4 +203,15 @@ let g:neomake_java_coverity_maker = {
 
 let g:neomake_java_enabled_makers = ['coverity']
 
+" vimwiki
+"
+let g:vimwiki_list = [{'path': '~/.vimwiki', 'path_html': '~/public_html/', 'maxhi': 1}]
 
+
+" insert a timestamp with F3
+map <F3> :r! date +"\%Y-\%m-\%d \%H:\%M:\%S"<ESC>0=j
+
+" Automatically commit to git repo on write.
+augroup vimwiki
+au! BufWritePost ~/.vimwiki/* !cd ~/.vimwiki/; git add "%";git commit -m "Auto commit of %:t." "%"; git push origin
+augroup END

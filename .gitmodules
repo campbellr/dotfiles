@@ -104,22 +104,50 @@
     url = git@gitlab.spgear.lab.emc.com:campbr9/vim-tap.git
     ignore = untracked
 
-[submodule ".config/nvim/bundle/vim-argwrap"]
+[submodule "vim-argwrap"]
 	path = .config/nvim/bundle/vim-argwrap
     url = https://github.com/FooSoft/vim-argwrap
     ignore = untracked
 
-[submodule ".config/nvim/bundle/vim-coffee-script"]
+[submodule "vim-coffee-script"]
 	path = .config/nvim/bundle/vim-coffee-script
     url = https://github.com/kchmck/vim-coffee-script
     ignore = untracked
 
-[submodule ".config/nvim/bundle/vim-foldsearch"]
+[submodule "vim-foldsearch"]
 	path = .config/nvim/bundle/vim-foldsearch
     url = https://github.com/embear/vim-foldsearch
     ignore = untracked
 
-[submodule ".config/nvim/bundle/vim-vue"]
+[submodule "vim-vue"]
 	path = .config/nvim/bundle/vim-vue
 	url = https://github.com/posva/vim-vue
     ignore = untracked
+
+[submodule "vim-visual-increment"]
+	path = .config/nvim/bundle/vim-visual-increment
+    url = https://github.com/triglav/vim-visual-increment
+    ignore = untracked
+
+[submodule "vimwiki"]
+	path = .config/nvim/bundle/vimwiki
+    url = https://github.com/vimwiki/vimwiki.git
+    ignore = untracked
+
+[submodule "taskwiki"]
+	path = .config/nvim/bundle/taskwiki
+    url = https://github.com/tbabej/taskwiki
+    ignore = untracked
+
+[submodule ".config/nvim/bundle/vimwiki"]
+	path = .config/nvim/bundle/vimwiki
+	url = https://github.com/vimwiki/vimwiki
+    ignore = untracked
+
+[submodule ".config/nvim/bundle/vim-visual-increment"]
+	path = .config/nvim/bundle/vim-visual-increment
+	url = https://github.com/triglav/vim-visual-increment
+    ignore = untracked
+[submodule ".config/nvim/bundle/taskwiki"]
+	path = .config/nvim/bundle/taskwiki
+	url = https://github.com/tbabej/taskwiki
