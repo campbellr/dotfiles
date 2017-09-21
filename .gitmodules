@@ -151,3 +151,6 @@
 [submodule ".config/nvim/bundle/taskwiki"]
 	path = .config/nvim/bundle/taskwiki
 	url = https://github.com/tbabej/taskwiki
+[submodule ".config/nvim/bundle/vim-plugin-AnsiEsc"]
+	path = .config/nvim/bundle/vim-plugin-AnsiEsc
+	url = https://github.com/powerman/vim-plugin-AnsiEsc
