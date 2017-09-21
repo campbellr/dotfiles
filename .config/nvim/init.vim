@@ -189,29 +189,31 @@ autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 autocmd FileType vue.html.javascript.css setlocal shiftwidth=2 tabstop=2
 
 
-let g:markdown_composer_autostart = 1
+let g:markdown_composer_autostart = 0
 
-" Coverity stuff
-"
-let g:neomake_java_coverity_maker = {
- \ 'exe': 'cov-run-desktop',
- \ 'args': ['--disconnected', 
- \          '--dir', '/tmp/ui_build1',
- \          '--text-output-style=oneline', '%'],
- \ 'errorformat': '%f:%l:\\ %m',
- \ }
-
-let g:neomake_java_enabled_makers = ['coverity']
 
 " vimwiki
 "
-let g:vimwiki_list = [{'path': '~/.vimwiki', 'path_html': '~/public_html/', 'maxhi': 1}]
-
+let g:vimwiki_list = [
+  \ {'path': '~/.vimwiki', 'path_html': '~/public_html/', 
+  \  'maxhi': 1, 'auto_tags': 1},
+  \ {'path': '~/.vimwiki.md', 'maxhi': 1, 'auto_tags': 1,
+  \  'syntax': 'markdown', 'ext': '.wiki.md'}
+  \  ]
+let g:vimwiki_global_ext = 0
 
 " insert a timestamp with F3
-map <F3> :r! date +"\%Y-\%m-\%d \%H:\%M:\%S"<ESC>0=j
+map <F3> :r! date +"\%Y-\%m-\%d \%H:\%M:\%S"<ESC>0==j
+map <F4> :r! date +"\%Y-\%m-\%d"<ESC>0=j
 
 " Automatically commit to git repo on write.
-augroup vimwiki
-au! BufWritePost ~/.vimwiki/* !cd ~/.vimwiki/; git add "%";git commit -m "Auto commit of %:t." "%"; git push origin
-augroup END
+autocmd! BufWritePost ~/.vimwiki/* !cd ~/.vimwiki/; git add "%";git commit -q -m "Auto commit of %:t." "%"; git push -q origin
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
+
+" bind F (for find) to grep word under cursor
+nnoremap F :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
