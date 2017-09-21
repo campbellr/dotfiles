@@ -13,6 +13,7 @@ case $- in
       *) return;;
 esac
 
+export HISTTIMEFORMAT="%d/%m/%y %T "
 export PROMPT_DIRTRIM=3
 export EDITOR="vim"
 export BROWSER="firefox"
@@ -34,25 +35,33 @@ set -o vi
 # turn off flow control (i keep accidentally freezing my terminal with ^s)
 stty -ixon
 
-function timer_start {
-  timer=${timer:-$SECONDS}
+# Enable persistent history (see http://eli.thegreenplace.net/2013/06/11/keeping-persistent-history-in-bash)
+
+log_bash_persistent_history()
+{
+  local rc=$?
+  [[ $(history 1) =~ ^\ *[0-9]+\ +([^\ ]+\ [^\ ]+)\ +(.*)$ ]]
+  local date_part="${BASH_REMATCH[1]}"
+  local command_part="${BASH_REMATCH[2]}"
+  if [ "$command_part" != "$PERSISTENT_HISTORY_LAST" ]
+  then
+    echo $date_part "|" "$command_part" >> ~/.persistent_history
+    export PERSISTENT_HISTORY_LAST="$command_part"
+  fi
 }
 
-function timer_stop {
-  timer_show=$(($SECONDS - $timer))
-  unset timer
+# Stuff to do on PROMPT_COMMAND
+run_on_prompt_command()
+{
+    log_bash_persistent_history
 }
 
-trap 'timer_start' DEBUG
-
-if [ "$PROMPT_COMMAND" == "" ]; then
-  PROMPT_COMMAND="timer_stop"
-else
-  PROMPT_COMMAND="$PROMPT_COMMAND; timer_stop"
-fi
+PROMPT_COMMAND="run_on_prompt_command"
 
 
-PS1='[last: ${timer_show}s][\w]\[\033[32m\]$(__git_ps1) \[\033[0m\]$ '
+
+
+PS1='[\w]\[\033[32m\]$(__git_ps1) \[\033[0m\]$ '
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
