@@ -209,6 +209,9 @@ map <F4> :r! date +"\%Y-\%m-\%d"<ESC>0=j
 " Automatically commit to git repo on write.
 autocmd! BufWritePost ~/.vimwiki/* !cd ~/.vimwiki/; git add "%";git commit -q -m "Auto commit of %:t." "%"; git push -q origin
 
+" turn off word wrap in vimwiki
+autocmd! BufNewFile,BufRead *.wiki set nowrap
+
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
