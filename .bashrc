@@ -15,8 +15,6 @@ esac
 
 export HISTTIMEFORMAT="%d/%m/%y %T "
 export PROMPT_DIRTRIM=3
-export EDITOR="vim"
-export BROWSER="firefox"
 export PYTHONSTARTUP=$HOME/.pythonrc
 export GOPATH=$HOME/go
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/go/bin:$GOPATH/bin:$PATH
@@ -28,6 +26,11 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_SCRIPT=$HOME/.local/bin/virtualenvwrapper.sh
 source $VIRTUALENVWRAPPER_SCRIPT
+
+export TERMINAL="urxvt"
+export PAGER="less"
+export EDITOR="vim"
+export BROWSER="firefox"
 
 # enable vi-like keybindings
 set -o vi
