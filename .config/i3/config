@@ -173,3 +173,13 @@ bar {
         tray_output primary
         position top
 }
+
+# Startup programs
+# start NetworkManager applet
+exec --no-startup-id nm-applet --sm-disable
+# start the clipboard (mainly to keep the various X clipboards in sync)
+exec --no-startup-id parcellite
+
+# (re)load stuff from .Xresources .Xdefaults
+exec xrdb -merge $HOME/.Xresources
+exec xrdb -merge $HOME/.Xdefaults
