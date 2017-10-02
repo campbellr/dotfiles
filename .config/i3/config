@@ -120,6 +120,9 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Tab workspace next_on_output
 bindsym $mod+Shift+Tab workspace prev_on_output
 
+# create a new workspace (instead of having to hunt for a free number)
+bindsym $mod+grave exec --no-startup-id i3-new-workspace
+
 # audio controls
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume
