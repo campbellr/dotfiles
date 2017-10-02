@@ -32,6 +32,9 @@ export PAGER="less"
 export EDITOR="vim"
 export BROWSER="firefox"
 
+export GPG_TTY=$(tty)
+gpg-connect-agent updatestartuptty /bye >/dev/null
+
 # enable vi-like keybindings
 set -o vi
 
