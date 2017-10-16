@@ -7,10 +7,74 @@ set background=dark
 colorscheme desert256
 " colorscheme solarized
 
-" pathogen load
-filetype off
-call pathogen#infect()
-call pathogen#helptags()
+" build helper for vim-markdown composer
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+    !cargo build --release
+  endif
+endfunction
+
+" vim-plug initialization
+call plug#begin('~/.local/share/nvim/plugged')
+
+" Awesome python autocompletion for vim
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" Fold away lines that don't match a specific search pattern
+Plug 'embear/vim-foldsearch'
+" A vim interface for taskwarrior
+Plug 'farseer90718/vim-taskwarrior',
+" Go language support for Vim
+Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
+" An industrial strength argument wrapping and unwrapping extension for vim
+Plug 'FooSoft/vim-argwrap'
+" My TAP syntax highlighting plugin
+Plug 'git@gitlab.spgear.lab.emc.com:campbr9/vim-tap.git'
+" Clojure runtime files (mainly for vim-fireplace)
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+" Vim plugin for fzf, a blazing fast fuzzy file finder written in Go
+Plug 'junegunn/fzf', { 'do': './install --all' }
+" structured editing of lisp s-expressions
+Plug 'kovisoft/paredit', { 'for': ['clojure', 'scheme'] }
+" A vim plugin that provides an easy way to brows the tags of the current file
+Plug 'majutsushi/tagbar'
+" Async grep/ack/ag search that loads matches into the location list
+Plug 'mhinz/vim-grepper'
+" Syntax highlighting for handlebars-style template files
+Plug 'mustache/vim-mustache-handlebars'
+" Async linting and make framework (like syntastic, but better)
+Plug 'neomake/neomake'
+" Syntax highlighting for Vue.js components
+Plug 'posva/vim-vue'
+" Render ANSI escape sequences inside vim
+Plug 'powerman/vim-plugin-AnsiEsc'
+" Async autocompletion framework for neovim
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Taskwarrior integration for vimwiki
+Plug 'tbabej/taskwiki'
+" A pure-viml fuzzy file finder that i sometimes contribute to
+Plug 'torbiak/probe'
+" Asynchronous build and test dispatcher (I don't really use this anymore...)
+Plug 'tpope/vim-dispatch'
+" A clojure REPL for vim 
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+" Granular project configuration using 'projections'
+Plug 'tpope/vim-projectionist'
+" Static support for Leiningen and Boot
+Plug 'tpope/vim-salve'
+" Mappings to easily delete, change and add 'surroundings'
+Plug 'tpope/vim-surround'
+" Easily create increasing/decreasing numbers of sequences across multiple
+" lines via visual mode
+Plug 'triglav/vim-visual-increment'
+" Live in-browser preview of markdown files
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+" An internal wiki inspired (somewhat) by org-mode
+Plug 'vimwiki/vimwiki'
+" a Go completion source for deoplete 
+Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make'}
+
+call plug#end()
+
 
 " enable syntax coloring if available
 if has("syntax")
