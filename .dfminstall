@@ -8,3 +8,4 @@ bin skip
 .calcurse recurse
 .mutt/cache skip
 .config/bugwarrior/bugwarrior.log skip
+.gnupg recurse
