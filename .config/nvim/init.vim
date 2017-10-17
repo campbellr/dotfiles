@@ -261,8 +261,6 @@ let g:markdown_composer_autostart = 0
 let g:vimwiki_list = [
   \ {'path': '~/.vimwiki', 'path_html': '~/public_html/', 
   \  'maxhi': 1, 'auto_tags': 1},
-  \ {'path': '~/.vimwiki.md', 'maxhi': 1, 'auto_tags': 1,
-  \  'syntax': 'markdown', 'ext': '.wiki.md'}
   \  ]
 let g:vimwiki_global_ext = 0
 
