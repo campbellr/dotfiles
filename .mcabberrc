@@ -44,5 +44,6 @@ alias tf = say (ノಠ益ಠ)ノ彡┻━┻
 alias ts = ┬──┬ ノ( ゜-゜ノ)
 alias coffee = say ☕
 alias n = roster unread_next
+alias thumbsup = say 👍
 
 source ~/.mcabberrc.local
