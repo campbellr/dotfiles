@@ -268,6 +268,9 @@ let g:vimwiki_global_ext = 0
 map <F3> :r! date +"\%Y-\%m-\%d \%H:\%M:\%S"<ESC>0==j
 map <F4> :r! date +"\%Y-\%m-\%d"<ESC>0=j
 
+:nmap <Leader>k <Plug>VimwikiDiaryPrevDay
+:nmap <Leader>j <Plug>VimwikiDiaryNextDay
+
 " Automatically commit to git repo on write.
 autocmd! BufWritePost ~/.vimwiki/* !cd ~/.vimwiki/; git add "%";git commit -q -m "Auto commit of %:t." "%"; git push -q origin
 
