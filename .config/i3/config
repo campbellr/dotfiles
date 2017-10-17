@@ -140,8 +140,8 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# lock the screen with i3lock
-bindsym $mod+Shift+x exec "i3lock -c 000000 -d"
+# lock the screen with i3lock (Ctrl+Alt+l)
+bindsym Control+Mod1+l exec "i3lock -c 000000 -d"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -169,10 +169,16 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# 8676 is the WOEID for Edmonton
+# Weather script from https://github.com/calzoneman/i3-weather
+set $WEATHER_LOC 8676 
+set $WEATHER_FMT "{temp}°{unit_temperature} {text}"
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+        status_command i3status | weather --unit c --wrap-i3-status \
+            $WEATHER_LOC --format $WEATHER_FMT --position -1
         tray_output primary
         position top
 }
