@@ -1,7 +1,6 @@
 [user]
 	name = Ryan Campbell
-	email = Ryan.Campbell@emc.com
-	signingkey = 99C2AFE6
+	email = rcampbell@atb.com
 [color]
     ui = auto
 [alias]
@@ -11,8 +10,6 @@
 	dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy  | less --tabs=4 -RFX; }; f"
 [log]
     decorate = short
-[http]
-	sslVerify = false
 [rebase]
 	autosquash = true
 [credential]
@@ -25,7 +22,3 @@
     zeroPaddedFilemode = ignore
 [fetch]
 	prune = true
-[commit]
-	gpgsign = true
-[gpg]
-	program = gpg2

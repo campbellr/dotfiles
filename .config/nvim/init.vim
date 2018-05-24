@@ -27,8 +27,6 @@ Plug 'farseer90718/vim-taskwarrior',
 Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
 " An industrial strength argument wrapping and unwrapping extension for vim
 Plug 'FooSoft/vim-argwrap'
-" My TAP syntax highlighting plugin
-Plug 'git@gitlab.spgear.lab.emc.com:campbr9/vim-tap.git'
 " Clojure runtime files (mainly for vim-fireplace)
 Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
 " Vim plugin for fzf, a blazing fast fuzzy file finder written in Go
@@ -41,8 +39,6 @@ Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-grepper'
 " Syntax highlighting for handlebars-style template files
 Plug 'mustache/vim-mustache-handlebars'
-" Async linting and make framework (like syntastic, but better)
-Plug 'neomake/neomake'
 " Syntax highlighting for Vue.js components
 Plug 'posva/vim-vue'
 " Render ANSI escape sequences inside vim
@@ -55,8 +51,10 @@ Plug 'tbabej/taskwiki'
 Plug 'torbiak/probe'
 " Asynchronous build and test dispatcher (I don't really use this anymore...)
 Plug 'tpope/vim-dispatch'
-" A clojure REPL for vim 
+" A clojure REPL for vim
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+" syntax highlighting and stuff for Git
+Plug 'tpope/vim-git'
 " Granular project configuration using 'projections'
 Plug 'tpope/vim-projectionist'
 " Static support for Leiningen and Boot
@@ -70,8 +68,20 @@ Plug 'triglav/vim-visual-increment'
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 " An internal wiki inspired (somewhat) by org-mode
 Plug 'vimwiki/vimwiki'
-" a Go completion source for deoplete 
+" a Go completion source for deoplete
 Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make'}
+" highlight whitespace
+Plug 'ntpeters/vim-better-whitespace'
+" show changed lines in the gutter
+Plug 'airblade/vim-gitgutter'
+" Asynchronous Lint Engine
+Plug 'w0rp/ale'
+" Syntax highlighting for styled-components
+Plug 'styled-components/vim-styled-components', { 'for': 'javascript' }
+" Rainbow parentheses!
+Plug 'junegunn/rainbow_parentheses.vim'
+" Javascript auto-import helper
+Plug 'Galooshi/vim-import-js', { 'for': 'javascript' }
 
 call plug#end()
 
@@ -116,6 +126,9 @@ set backspace=indent,eol,start "make backspace work properly
 set noincsearch
 
 set completeopt=menuone,longest,preview
+
+" make 'yank' copy to osx system clipboard
+set clipboard=unnamed
 
 " Removes whitespace before saving
 autocmd BufWritePre *.py :%s/\s\+$//e
@@ -173,8 +186,9 @@ let g:deoplete#enable_at_startup = 1
 "let g:neomake_python_enabled_makers = ['flake8', 'pylint']
 let g:neomake_python_enabled_makers = ['flake8']
 let g:neomake_go_enabled_makers = ['go', 'govet']
+let g:neomake_javascript_enabled_makers = ['eslint']
 
-autocmd! BufWritePost * Neomake
+" autocmd! BufWritePost * Neomake
 
 
 " word wrap
@@ -260,7 +274,7 @@ let g:markdown_composer_autostart = 0
 "
 let g:vimwiki_list = [
   \ {'path': '~/.vimwiki', 'path_html': '~/public_html/', 
-  \  'maxhi': 1, 'auto_tags': 1},
+  \  'maxhi': 1, 'auto_tags': 1, 'syntax': 'markdown', 'ext': '.md' },
   \  ]
 let g:vimwiki_global_ext = 0
 
@@ -272,7 +286,7 @@ map <F4> :r! date +"\%Y-\%m-\%d"<ESC>0=j
 :nmap <Leader>j <Plug>VimwikiDiaryNextDay
 
 " Automatically commit to git repo on write.
-autocmd! BufWritePost ~/.vimwiki/* !cd ~/.vimwiki/; git add "%";git commit -q -m "Auto commit of %:t." "%"; git push -q origin
+autocmd! BufWritePost ~/.vimwiki/* !cd ~/.vimwiki/; git add "%";git commit -q -m "Auto commit of %:t." "%"
 
 " turn off word wrap in vimwiki
 autocmd! BufNewFile,BufRead *.wiki set nowrap
@@ -285,3 +299,19 @@ endif
 
 " bind F (for find) to grep word under cursor
 nnoremap F :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+let g:ale_sign_column_always = 1
+
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\}
+
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_fix_on_save = 1
+
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+
+augroup rainbow_all
+  autocmd!
+  autocmd FileType * RainbowParentheses
+augroup END
