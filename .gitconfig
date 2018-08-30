@@ -1,6 +1,8 @@
 [user]
 	name = Ryan Campbell
-	email = rcampbell@atb.com
+    email = rcampbell@atb.com
+[commit]
+    verbose = true
 [color]
     ui = auto
 [alias]
@@ -16,6 +18,7 @@
 	helper = cache
 [core]
 	pager = less -R -x1,5
+	editor = nvim
 [diff]
     compactionHeuristic = true
 [fsck]

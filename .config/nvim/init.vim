@@ -82,6 +82,14 @@ Plug 'styled-components/vim-styled-components', { 'for': 'javascript' }
 Plug 'junegunn/rainbow_parentheses.vim'
 " Javascript auto-import helper
 Plug 'Galooshi/vim-import-js', { 'for': 'javascript' }
+" Jump to any location specified by 2 characters (minimalist easymotion)
+" Plug 'justinmk/vim-sneak'
+" Vim motions on speed!
+Plug 'easymotion/vim-easymotion'
+" Coverage reporting for vim
+Plug 'ruanyl/coverage.vim', { 'for': 'javascript' }
+" A test plugin
+Plug 'janko-m/vim-test'
 
 call plug#end()
 
@@ -309,9 +317,31 @@ let g:ale_fixers = {
 let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_fix_on_save = 1
 
+let g:sneak#label = 1
+
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
 augroup rainbow_all
   autocmd!
   autocmd FileType * RainbowParentheses
 augroup END
+
+" coverage.vim options
+let g:coverage_json_report_path = 'coverage/coverage-final.json'
+
+" test.vim options
+let test#strategy = 'neovim'
+
+" projectionist settings for javascript projects:
+let g:projectionist_heuristics = {
+      \ "package.json": {
+      \   "src/*.js": {
+      \     "alternate": "src/{dirname}/{basename}.test.js",
+      \     "type": "source",
+      \   },
+      \   "src/*.test.js": {
+      \     "alternate": "src/{}.js",
+      \     "type": "source",
+      \   },
+      \ },
+\ }
