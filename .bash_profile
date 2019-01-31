@@ -15,7 +15,7 @@ export PATH=$PATH:$HOME/bin/
 export PATH=$PATH:$HOME/perl5/bin/
 
 # Add python (3) stuff to $PATH
-export PATH=$PATH:$HOME/Library/Python/3.6/bin/
+export PATH=$HOME/Library/Python/3.7/bin/:$PATH
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
