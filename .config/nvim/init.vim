@@ -5,7 +5,6 @@ set background=dark
 
 " This color scheme is great for dark backgrounds
 colorscheme desert256
-" colorscheme solarized
 
 " build helper for vim-markdown composer
 function! BuildComposer(info)
@@ -55,6 +54,8 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 " syntax highlighting and stuff for Git
 Plug 'tpope/vim-git'
+" The best git wrapper of all time
+Plug 'tpope/vim-fugitive'
 " Granular project configuration using 'projections'
 Plug 'tpope/vim-projectionist'
 " Static support for Leiningen and Boot
@@ -90,6 +91,21 @@ Plug 'easymotion/vim-easymotion'
 Plug 'ruanyl/coverage.vim', { 'for': 'javascript' }
 " A test plugin
 Plug 'janko-m/vim-test'
+Plug 'ludovicchabant/vim-gutentags'
+" tmux-style window zooming
+Plug 'dhruvasagar/vim-zoom'
+
+" A vim LSP client
+"Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh'}
+Plug 'skywind3000/asyncrun.vim'
+
+" Pony-lang
+Plug 'jakwings/vim-pony'
+" Bitbucket support for :Gbrowse
+Plug 'tommcdo/vim-fubitive'
+
+" workaround for https://github.com/neovim/neovim/issues/1822
+Plug 'bfredl/nvim-miniyank'
 
 call plug#end()
 
@@ -136,7 +152,7 @@ set noincsearch
 set completeopt=menuone,longest,preview
 
 " make 'yank' copy to osx system clipboard
-set clipboard=unnamed
+set clipboard+=unnamed
 
 " Removes whitespace before saving
 autocmd BufWritePre *.py :%s/\s\+$//e
@@ -168,8 +184,7 @@ set foldlevel=10        " start with all folds open
 " status line
 set laststatus=2
 set title
-set statusline=%{fugitive#statusline()}\ %<%f%h%m%r%=%-14.(%l,%c%V%)\ %P
-
+set statusline=%{fugitive#statusline()}\ %<%f\ %{gutentags#statusline('[',']')}\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
 " display the syntax highlighting groups for the item under the cursor
 map <F8> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
@@ -189,19 +204,6 @@ endif
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
-
-" neomake
-"let g:neomake_python_enabled_makers = ['flake8', 'pylint']
-let g:neomake_python_enabled_makers = ['flake8']
-let g:neomake_go_enabled_makers = ['go', 'govet']
-let g:neomake_javascript_enabled_makers = ['eslint']
-
-" autocmd! BufWritePost * Neomake
-
-
-" word wrap
-" set wrap
-" set textwidth=79
 
 autocmd! BufWritePost .nvimrc source $MYVIMRC
 
@@ -240,9 +242,9 @@ let g:tagbar_type_go = {
     \ }
 
 nmap <F8> :TagbarToggle<CR>
+let g:tagbar_width = 80
 
 " vim-go
-let g:go_oracle_scope="gitlab.spgear.lab.emc.com/dolphin/go-mongo-proxy"
 " open test/implementation file in a vsplit instead of the same window
 let g:go_alternate_mode = "vsplit"
 let g:go_fmt_command = "goimports"
@@ -267,7 +269,7 @@ nnoremap <silent> <leader>a :ArgWrap<CR>
 " deoplete-go
 let g:deoplete#sources#go#gocode_binary = '/localhome/campbr9/go/bin/gocode'
 
-" only indent html 2 spaces
+" only indent these filetypes 2 spaces
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType gohtmltmpl setlocal shiftwidth=2 tabstop=2
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
@@ -281,7 +283,7 @@ let g:markdown_composer_autostart = 0
 " vimwiki
 "
 let g:vimwiki_list = [
-  \ {'path': '~/.vimwiki', 'path_html': '~/public_html/', 
+  \ {'path': '~/.vimwiki', 'path_html': '~/public_html/',
   \  'maxhi': 1, 'auto_tags': 1, 'syntax': 'markdown', 'ext': '.md' },
   \  ]
 let g:vimwiki_global_ext = 0
@@ -308,17 +310,24 @@ endif
 " bind F (for find) to grep word under cursor
 nnoremap F :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
+" ALE settings
 let g:ale_sign_column_always = 1
 
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
+\   'python': ['black'],
 \}
 
 let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_fix_on_save = 1
+let g:ale_command_wrapper = 'nice -n5'
+let g:ale_lint_delay = 2000
 
+
+" vim-sneak
 let g:sneak#label = 1
 
+" ranbow-parens
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
 augroup rainbow_all
@@ -331,17 +340,45 @@ let g:coverage_json_report_path = 'coverage/coverage-final.json'
 
 " test.vim options
 let test#strategy = 'neovim'
+let test#javascript#jest#options = '--detectOpenHandles'
 
 " projectionist settings for javascript projects:
 let g:projectionist_heuristics = {
       \ "package.json": {
       \   "src/*.js": {
-      \     "alternate": "src/{dirname}/{basename}.test.js",
+      \     "alternate": "src/{}.test.js",
       \     "type": "source",
       \   },
       \   "src/*.test.js": {
       \     "alternate": "src/{}.js",
+      \     "type": "test",
+      \   },
+      \   "server/*.js": {
+      \     "alternate": "server/{}.test.js",
       \     "type": "source",
       \   },
+      \   "server/*.test.js": {
+      \     "alternate": "server/{}.js",
+      \     "type": "test",
+      \   },
       \ },
+      \ "pom.xml": {
+      \   "src/main/java/*.java": {
+      \     "alternate": "src/test/java/{}Test.java",
+      \     "type": "source",
+      \   },
+      \   "src/test/java/*Test.java": {
+      \     "alternate": "src/main/java/{}.java",
+      \     "type": "test",
+      \   },
+      \ }
 \ }
+
+
+" gutentags
+let g:gutentags_exclude_filetypes = ['gitcommit']
+
+
+" fix clipboard=unnamed added newlines
+map p <Plug>(miniyank-autoput)
+map P <Plug>(miniyank-autoPut)
