@@ -61,3 +61,5 @@ source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.
 
 # shellcheck source=/dev/null
 source "$HOME/.functions"
+
+eval "$(jenv init -)"
