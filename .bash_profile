@@ -56,5 +56,8 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 export BLUEMIX_API_KEY=6b54t1mcU-dySwT07kjgKxSQCCyr7fjsUc7QxznV_Yns
 
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
+
 # shellcheck source=/dev/null
 source "$HOME/.functions"
