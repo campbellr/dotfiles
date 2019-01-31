@@ -3,7 +3,7 @@
 ## Installing
 
     $ cd $HOME
-    $ git clone git@gitlab.spgear.lab.emc.com:campbr9/dotfiles.git .dotfiles
+    $ git clone https://gitlab.com/campbellr/dotfiles.git .dotfiles
     $ ./.dotfiles/bin/dfm install # creates symlinks to install files
 
 ## Full documentation
