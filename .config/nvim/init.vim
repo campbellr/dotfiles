@@ -155,9 +155,7 @@ set completeopt=menuone,longest,preview
 set clipboard+=unnamed
 
 " Removes whitespace before saving
-autocmd BufWritePre *.py :%s/\s\+$//e
-autocmd BufWritePre *.vue :%s/\s\+$//e
-autocmd BufWritePre *.js :%s/\s\+$//e
+autocmd FileType python,javascript,markdown autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " Removes whitespace at EOF
 autocmd BufWritePre *.py :%s/\($\n\s*\)\+\%$//e
@@ -172,7 +170,7 @@ let g:Grep_Default_Options = '-R'
 
 " Probe options
 let g:probe_use_wildignore = 1
-let g:probe_mappings = {'accept_tab': '<enter>'}
+" let g:probe_mappings = {'accept_tab': '<enter>'}
 let g:probe_use_gitignore = 1
 
 "" Folding
@@ -315,7 +313,9 @@ let g:ale_sign_column_always = 1
 
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
-\   'python': ['black'],
+\   'python': ['black', 'isort'],
+\   'rst': ['trim_whitespace', 'remove_trailing_lines'],
+\   'xml': ['xmllint']
 \}
 
 let g:ale_javascript_prettier_use_local_config = 1
@@ -376,8 +376,16 @@ let g:projectionist_heuristics = {
 
 
 " gutentags
-let g:gutentags_exclude_filetypes = ['gitcommit']
+let g:gutentags_exclude_filetypes = [
+\  'gitcommit',
+\  'gitrebase',
+\  'yaml',
+\  'diff',
+\]
 
+
+" Make navigating buffers easier
+nnoremap <leader>b :ls<CR>:b<space>
 
 " fix clipboard=unnamed added newlines
 map p <Plug>(miniyank-autoput)
