@@ -1,0 +1,8 @@
+{
+    "python.formatting.provider": "black",
+    "python.pythonPath": "python3",
+    "java.format.settings.url": "atb-eclipse-formatter-config.xml",
+    "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -Dfile.encoding=UTF-8",
+    "coc.preferences.formatOnSaveFiletypes": ["css", "javascript", "json", "javascriptreact", "java", "python"],
+    "suggest.echodocSupport": true
+}
