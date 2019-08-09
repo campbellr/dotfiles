@@ -1,11 +1,5 @@
 runtime! debian.vim
 
-set t_Co=256
-set background=dark
-
-" This color scheme is great for dark backgrounds
-colorscheme desert256
-
 " build helper for vim-markdown composer
 function! BuildComposer(info)
   if a:info.status != 'unchanged' || a:info.force
@@ -16,8 +10,6 @@ endfunction
 " vim-plug initialization
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Awesome python autocompletion for vim
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 " Fold away lines that don't match a specific search pattern
 Plug 'embear/vim-foldsearch'
 " A vim interface for taskwarrior
@@ -42,8 +34,6 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'posva/vim-vue'
 " Render ANSI escape sequences inside vim
 Plug 'powerman/vim-plugin-AnsiEsc'
-" Async autocompletion framework for neovim
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Taskwarrior integration for vimwiki
 Plug 'tbabej/taskwiki'
 " A pure-viml fuzzy file finder that i sometimes contribute to
@@ -69,20 +59,14 @@ Plug 'triglav/vim-visual-increment'
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 " An internal wiki inspired (somewhat) by org-mode
 Plug 'vimwiki/vimwiki'
-" a Go completion source for deoplete
-Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make'}
 " highlight whitespace
 Plug 'ntpeters/vim-better-whitespace'
 " show changed lines in the gutter
 Plug 'airblade/vim-gitgutter'
-" Asynchronous Lint Engine
-Plug 'w0rp/ale'
 " Syntax highlighting for styled-components
 Plug 'styled-components/vim-styled-components', { 'for': 'javascript' }
 " Rainbow parentheses!
 Plug 'junegunn/rainbow_parentheses.vim'
-" Javascript auto-import helper
-Plug 'Galooshi/vim-import-js', { 'for': 'javascript' }
 " Jump to any location specified by 2 characters (minimalist easymotion)
 " Plug 'justinmk/vim-sneak'
 " Vim motions on speed!
@@ -91,15 +75,12 @@ Plug 'easymotion/vim-easymotion'
 Plug 'ruanyl/coverage.vim', { 'for': 'javascript' }
 " A test plugin
 Plug 'janko-m/vim-test'
-Plug 'ludovicchabant/vim-gutentags'
 " tmux-style window zooming
 Plug 'dhruvasagar/vim-zoom'
 
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 
-" A vim LSP client
-"Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh'}
 Plug 'skywind3000/asyncrun.vim'
 
 " Pony-lang
@@ -116,19 +97,28 @@ Plug 'https://github.com/Alok/notational-fzf-vim'
 " intellisense engine for neovim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'crusoexia/vim-monokai'
-
 Plug 'Shougo/echodoc.vim'
 
-call plug#end()
+Plug 'morhetz/gruvbox'
 
-let g:nv_search_paths = ['~/.vimwiki', './docs', 'docs.md' , './notes.md']
-let g:nv_use_short_pathnames = 1
+call plug#end()
 
 " enable syntax coloring if available
 if has("syntax")
   syntax on
 endif
+
+set t_Co=256
+set termguicolors
+set background=dark
+
+" This color scheme is great for dark backgrounds
+" colorscheme desert256
+colorscheme gruvbox
+
+let g:nv_search_paths = ['~/.vimwiki', './docs', 'docs.md' , './notes.md']
+let g:nv_use_short_pathnames = 1
+
 
 " Make Vim jump to the last position when reopening a file
 if has("autocmd")
@@ -171,6 +161,9 @@ set noincsearch
 
 " make 'yank' copy to osx system clipboard
 set clipboard+=unnamed
+" fix clipboard=unnamed added newlines
+map p <Plug>(miniyank-autoput)
+map P <Plug>(miniyank-autoPut)
 
 " Show line numbers
 set number
@@ -181,14 +174,7 @@ set number
 highlight LineNr ctermfg=grey
 
 " fix ugly pink completion windows
-hi Pmenu ctermbg=DarkGrey guibg=DarkGrey
-
-
-" Removes whitespace before saving
-autocmd FileType python,javascript,markdown autocmd BufWritePre <buffer> :%s/\s\+$//e
-
-" Removes whitespace at EOF
-autocmd BufWritePre *.py :%s/\($\n\s*\)\+\%$//e
+" hi Pmenu ctermbg=DarkGrey guibg=DarkGrey
 
 
 set wildmode=longest:full
@@ -212,7 +198,7 @@ set foldlevel=10        " start with all folds open
 " status line
 set laststatus=2
 set title
-set statusline=%{fugitive#statusline()}\ %<%f\ %{gutentags#statusline('[',']')}\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+set statusline=%{fugitive#statusline()}\ %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
 " display the syntax highlighting groups for the item under the cursor
 map <F8> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
@@ -229,9 +215,6 @@ if has('nvim')
     set timeout
     set ttimeoutlen=0
 endif
-
-" deoplete
-let g:deoplete#enable_at_startup = 0
 
 autocmd! BufWritePost .nvimrc source $MYVIMRC
 
@@ -294,8 +277,6 @@ nnoremap <silent> <leader>a :ArgWrap<CR>
 " Support Format-Flowed in email (mutt).
 "autocmd FileType mail setlocal fo+=aw tw=72
 
-" deoplete-go
-let g:deoplete#sources#go#gocode_binary = '/localhome/campbr9/go/bin/gocode'
 
 " only indent these filetypes 2 spaces
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
@@ -337,33 +318,6 @@ endif
 
 " bind F (for find) to grep word under cursor
 nnoremap F :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" ALE settings
-let g:ale_sign_column_always = 1
-let g:ale_completion_enabled = 0
-let g:ale_enabled = 0
-
-inoremap <silent> <C-Space> <C-\><C-O>:AleComplete<CR>
-
-let g:ale_fixers = {
-\   'javascript': ['prettier'],
-\   'python': ['black', 'isort'],
-\   'rst': ['trim_whitespace', 'remove_trailing_lines'],
-\   'xml': ['xmllint'],
-\   'java': ['trim_whitespace', 'remove_trailing_lines'],
-\}
-
-let g:ale_javascript_prettier_use_local_config = 1
-let g:ale_fix_on_save = 1
-let g:ale_command_wrapper = 'nice -n5'
-let g:ale_lint_delay = 2000
-let g:ale_python_auto_pipenv = 1
-
-let g:ale_linters_ignore = {
-\   'python': ['pylint'],
-\   'java': ['checkstyle', 'pmd', 'javac'],
-\    }
-
 
 " vim-sneak
 let g:sneak#label = 1
@@ -419,18 +373,7 @@ let g:projectionist_heuristics = {
 \ }
 
 
-" gutentags
-let g:gutentags_exclude_filetypes = [
-\  'gitcommit',
-\  'gitrebase',
-\  'yaml',
-\  'diff',
-\]
 
-
-" fix clipboard=unnamed added newlines
-map p <Plug>(miniyank-autoput)
-map P <Plug>(miniyank-autoPut)
 
 " ------------------- coc.nvim -------------------------------------
 
@@ -559,6 +502,6 @@ autocmd BufWritePre *.java :OR
 
 let g:echodoc_enable_at_startup = 1
 
-" Allow arror up and arrow down to control command-line completion
+" Allow arrow up and arrow down to control command-line completion
 cnoremap <expr> <up>   pumvisible() ? "<C-p>" : "<up>"
 cnoremap <expr> <down> pumvisible() ? "<C-n>" : "<down>"
