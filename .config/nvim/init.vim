@@ -101,6 +101,9 @@ Plug 'Shougo/echodoc.vim'
 
 Plug 'morhetz/gruvbox'
 
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
 call plug#end()
 
 " enable syntax coloring if available
@@ -505,3 +508,6 @@ let g:echodoc_enable_at_startup = 1
 " Allow arrow up and arrow down to control command-line completion
 cnoremap <expr> <up>   pumvisible() ? "<C-p>" : "<up>"
 cnoremap <expr> <down> pumvisible() ? "<C-n>" : "<down>"
+
+" Use gruvbox airline theme
+let g:airline_theme='gruvbox'
