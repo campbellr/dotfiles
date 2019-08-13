@@ -1,8 +1,21 @@
 {
-    "python.formatting.provider": "black",
-    "python.pythonPath": "python3",
-    "java.format.settings.url": "atb-eclipse-formatter-config.xml",
-    "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -Dfile.encoding=UTF-8",
-    "coc.preferences.formatOnSaveFiletypes": ["css", "javascript", "json", "javascriptreact", "java", "python"],
-    "suggest.echodocSupport": true
+  "python.jediEnabled": false,
+  "python.formatting.provider": "black",
+  "python.pythonPath": "python3",
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.formatting.blackArgs": ["--line-length", "79"],
+  "python.linting.enabled": true,
+  "java.format.settings.url": "atb-eclipse-formatter-config.xml",
+  "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -Dfile.encoding=UTF-8",
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "javascript",
+    "json",
+    "javascriptreact",
+    "java",
+    "python"
+  ],
+  "suggest.echodocSupport": true
 }
