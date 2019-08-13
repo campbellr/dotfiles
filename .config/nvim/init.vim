@@ -501,7 +501,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 
 " Organize imports on save
-autocmd BufWritePre *.java :OR
+autocmd FileType java,python autocmd BufWritePre <buffer> :OR
 
 let g:echodoc_enable_at_startup = 1
 
