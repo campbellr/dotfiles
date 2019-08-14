@@ -104,6 +104,8 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'thaerkh/vim-indentguides'
+
 call plug#end()
 
 " enable syntax coloring if available
@@ -511,3 +513,6 @@ cnoremap <expr> <down> pumvisible() ? "<C-n>" : "<down>"
 
 " Use gruvbox airline theme
 let g:airline_theme='gruvbox'
+
+" indent-guides settings
+let g:indentguides_ignorelist = ['text']
