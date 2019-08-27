@@ -533,3 +533,13 @@ let g:airline_theme='gruvbox'
 
 " indent-guides settings
 let g:indentguides_ignorelist = ['text']
+
+function! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+" Strip trailing whitespace before save
+autocmd BufWritePre *.js,*.py,*.xml,*.java :call <SID>StripTrailingWhitespaces()
