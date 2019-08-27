@@ -9,6 +9,15 @@
   "java.format.settings.url": "atb-eclipse-formatter-config.xml",
   "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -Dfile.encoding=UTF-8",
   "java.configuration.updateBuildConfiguration": "automatic",
+  "java.completion.importOrder": [
+    "java",
+    "javax",
+    "com",
+    "org",
+    "com.atb",
+    "com.atb.ent.framework",
+    "com.atb.ent"
+  ],
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "javascript",
