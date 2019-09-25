@@ -18,7 +18,7 @@ export FZF_BASE="/Users/e87483/.local/share/nvim/plugged/fzf"
 export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python3"
 export WORKON_HOME="$HOME/.virtualenvs"
 
-export NODE_EXTRA_CA_CERTS=~/.certs/MS-P-PK01-CA.pem
+export NODE_EXTRA_CA_CERTS=~/.certs/ms-p-pki01-ca.crt
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -130,7 +130,16 @@ export EDITOR='nvim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vim="nvim"
+alias vimwiki="nvim -c VimwikiIndex"
+alias vimdiary="nvim -c VimwikiDiaryIndex"
 
+
+HISTSIZE=50000
+SAVEHIST=250000
+
+
+# credentials
+source ~/.credentials
 
 # gcloud stuff
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
