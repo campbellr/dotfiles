@@ -172,7 +172,7 @@ map P <Plug>(miniyank-autoPut)
 
 " Show line numbers
 set number
-" underline the line the cursor is on 
+" underline the line the cursor is on
 " set cursorline
 
 " make line number color less bright
@@ -310,7 +310,7 @@ map <F4> :r! date +"\%Y-\%m-\%d"<ESC>0=j
 :nmap <Leader>j <Plug>VimwikiDiaryNextDay
 
 " Automatically commit to git repo on write.
-autocmd! BufWritePost ~/.vimwiki/* !cd ~/.vimwiki/; git add "%";git commit -q -m "Auto commit of %:t." "%"
+autocmd! BufWritePost ~/.vimwiki/* !cd ~/.vimwiki/; git add "%"; git commit -q -m "Auto commit of %:t." "%"; git push
 
 " turn off word wrap in vimwiki
 autocmd! BufNewFile,BufRead *.wiki set nowrap
