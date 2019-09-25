@@ -17,7 +17,7 @@
 [credential]
 	helper = cache
 [core]
-	pager = less -R -x1,5
+	pager = less -RXF -x1,5
 	editor = nvim
 	excludesfile = /Users/e87483/.gitignore_global
 [diff]
@@ -27,4 +27,4 @@
 [fetch]
 	prune = true
 [interactive]
-	diffFilter = diff-highlight
+	diffFilter = $(brew --prefix git)/share/git-core/contrib/diff-highlight/diff-highlight
