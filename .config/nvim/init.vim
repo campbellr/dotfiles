@@ -23,7 +23,8 @@ Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
 " Vim plugin for fzf, a blazing fast fuzzy file finder written in Go
 Plug 'junegunn/fzf', { 'do': './install --all' }
 " structured editing of lisp s-expressions
-Plug 'kovisoft/paredit', { 'for': ['clojure', 'scheme'] }
+"Plug 'kovisoft/paredit', { 'for': ['clojure', 'scheme'] }
+"Plug 'bhurlow/vim-parinfer', {'for': ['racket']}
 " A vim plugin that provides an easy way to brows the tags of the current file
 Plug 'majutsushi/tagbar'
 " Async grep/ack/ag search that loads matches into the location list
@@ -106,6 +107,13 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'thaerkh/vim-indentguides'
 
+" racket
+Plug 'wlangstroth/vim-racket'
+Plug 'vim-scripts/scribble.vim'
+
+" a nice repl for vim
+Plug 'rhysd/reply.vim'
+
 call plug#end()
 
 " enable syntax coloring if available
@@ -124,6 +132,11 @@ colorscheme gruvbox
 let g:nv_search_paths = ['~/.vimwiki', './docs', 'docs.md' , './notes.md']
 let g:nv_use_short_pathnames = 1
 
+if has("autocmd")
+    au BufReadPost *.rkt,*.rktl set filetype=racket
+    au filetype racket set lisp
+    au filetype racket set autoindent
+endif
 
 " Make Vim jump to the last position when reopening a file
 if has("autocmd")
@@ -135,6 +148,8 @@ endif
 if has("autocmd")
   filetype plugin indent on
 endif
+
+au! BufRead,BufNewFile *.scrbl setfiletype scribble
 
 au BufRead,BufNewFile *.wiki set filetype=mediawiki
 au BufRead,BufNewFile *.yml,*.yaml set filetype=yaml
@@ -289,6 +304,7 @@ autocmd FileType gohtmltmpl setlocal shiftwidth=2 tabstop=2
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 autocmd FileType vue.html.javascript.css setlocal shiftwidth=2 tabstop=2
+autocmd FileType racket setlocal shiftwidth=2 tabstop=2
 
 
 let g:markdown_composer_autostart = 0
@@ -403,6 +419,7 @@ set signcolumn=yes
 
 let g:coc_global_extensions = [
   \ 'coc-eslint',
+  \ 'coc-highlight',
   \ 'coc-html',
   \ 'coc-java',
   \ 'coc-jest',
@@ -412,11 +429,14 @@ let g:coc_global_extensions = [
   \ 'coc-prettier',
   \ 'coc-python',
   \ 'coc-sh',
+  \ 'coc-styled-components',
   \ 'coc-tsserver',
   \ 'coc-vimlsp',
   \ 'coc-xml',
   \ 'coc-yaml'
   \ ]
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -520,7 +540,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 
 " Organize imports on save
-autocmd FileType java,python autocmd BufWritePre <buffer> :OR
+" autocmd FileType java,python autocmd BufWritePre <buffer> :OR
 
 let g:echodoc_enable_at_startup = 1
 
