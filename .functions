@@ -1,12 +1,7 @@
 #!/bin/bash
 
-# Point `kubectl` to the specified environment
-# usage: kubeinit dev|qa|preprod|prod
-#
-# This is written as a bash function so that we can manipulate the
-# current shell's environment (the kubeinit command prints an export command
-# to stdout)
-kubeinit() {
-    eval "$(~/bin/kubeinit "$1" 2> /dev/null)"
-}
 
+# sum a list of numbers from stdin
+sum() {
+    paste -sd+ - | bc
+}
