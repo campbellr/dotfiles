@@ -13,10 +13,7 @@
     "java",
     "javax",
     "com",
-    "org",
-    "com.atb",
-    "com.atb.ent.framework",
-    "com.atb.ent"
+    "org"
   ],
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
