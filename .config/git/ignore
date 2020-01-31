@@ -3,3 +3,7 @@
 .DS_Store?
 .Spotlight-V100
 tags
+.classpath
+.project
+.settings/
+.clj-kondo/
