@@ -1,30 +1,42 @@
 [user]
-	name = Ryan Campbell
-    email = rcampbell@atb.com
+  name = Ryan Campbell
+  email = ryan.campbell@kirasystems.com
 [commit]
-    verbose = true
+  verbose = true
 [color]
-    ui = auto
+  ui = auto
 [alias]
-    l = log --graph --decorate --all
-    graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
-    hist = log --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --date=short
-	dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy  | less --tabs=4 -RFX; }; f"
+  l = log --graph --decorate --all
+  graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+  hist = log --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --date=short
+  dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy  | less --tabs=4 -RFX; }; f"
+  redate = !EDITOR=true git rebase --interactive --onto $(git merge-base -a HEAD @{upstream}) --exec 'sleep 1 && git commit --amend --date=now --no-edit'
+  rebase-upstream = !git rebase --onto $(git merge-base -a HEAD @{upstream})
+  co = !git checkout $(git branch | fzf --height=40%)
+  cor = !git checkout $(git branch -r | fzf --height=40%)
+
 [log]
-    decorate = short
+  decorate = short
 [rebase]
-	autosquash = true
+  autosquash = true
 [credential]
-	helper = cache
+  helper = cache
 [core]
-	pager = less -RXF -x1,5
-	editor = nvim
-	excludesfile = /Users/e87483/.gitignore_global
+  pager = less -RXF -x1,5
+  editor = nvim
 [diff]
-    compactionHeuristic = true
+  compactionHeuristic = true
 [fsck]
-    zeroPaddedFilemode = ignore
+  zeroPaddedFilemode = ignore
 [fetch]
-	prune = true
+  prune = true
 [interactive]
-	diffFilter = $(brew --prefix git)/share/git-core/contrib/diff-highlight/diff-highlight
+  diffFilter = $(brew --prefix git)/share/git-core/contrib/diff-highlight/diff-highlight
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+
+[tig]
+  vertical-split = false
