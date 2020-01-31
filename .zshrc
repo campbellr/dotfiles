@@ -1,4 +1,3 @@
-#cat eval "$(jenv init -)" >> /Users/e87483/.zshrc If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Add personal bin directory to PATH
@@ -7,18 +6,20 @@ path=($HOME/bin $path)
 # Add python (3) stuff to $PATH
 path=($HOME/Library/Python/3.7/bin $path)
 
+# Go stuff
+path=($HOME/go/bin $path)
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/e87483/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # FZF settings
-export FZF_BASE="/Users/e87483/.local/share/nvim/plugged/fzf"
+export FZF_BASE="$HOME/.local/share/nvim/plugged/fzf"
 
 # virtualenvwrapper settings
 export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python3"
 export WORKON_HOME="$HOME/.virtualenvs"
 
-export NODE_EXTRA_CA_CERTS=~/.certs/ms-p-pki01-ca.crt
+#export NODE_EXTRA_CA_CERTS=~/.certs/ms-p-pki01-ca.crt
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -86,19 +87,14 @@ docker
 fzf
 git
 golang
-helm
-httpie
 jenv
-kubectl
 npm
 nvm
 osx
 pip
 python
 ripgrep
-taskwarrior
 tmux
-virtualenvwrapper
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -133,21 +129,95 @@ export EDITOR='nvim'
 alias vim="nvim"
 alias vimwiki="nvim -c VimwikiIndex"
 alias vimdiary="nvim -c VimwikiDiaryIndex"
-
+alias pgcli='LESS="-SRXF" pgcli'
 
 HISTSIZE=50000
 SAVEHIST=250000
 
 
 # credentials
-source ~/.credentials
-
-# gcloud stuff
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
-
+[ -f ~/.credentials ] && source ~/.credentials
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH="/usr/local/opt/go@1.12/bin:$PATH"
-eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
+#export PATH="/usr/local/opt/go@1.12/bin:$PATH"
+#eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
+
+PATH="/Users/ryancampbell/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/Users/ryancampbell/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/Users/ryancampbell/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/Users/ryancampbell/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/ryancampbell/perl5"; export PERL_MM_OPT;
+
+
+
+
+#### Git FZF keybindings
+# borrowed from https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
+#
+is_in_git_repo() {
+  git rev-parse HEAD > /dev/null 2>&1
+}
+
+fzf-down() {
+  fzf --height 50% "$@" --border
+}
+
+fzf-gf() {
+  is_in_git_repo || return
+  git -c color.status=always status --short |
+  fzf-down -m --ansi --nth 2..,.. \
+    --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1}) | head -500' |
+  cut -c4- | sed 's/.* -> //'
+}
+
+fzf-gb() {
+  is_in_git_repo || return
+  git branch -a --color=always | grep -v '/HEAD\s' | sort |
+  fzf-down --ansi --multi --tac --preview-window right:70% \
+    --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1) | head -'$LINES |
+  sed 's/^..//' | cut -d' ' -f1 |
+  sed 's#^remotes/##'
+}
+
+fzf-gt() {
+  is_in_git_repo || return
+  git tag --sort -version:refname |
+  fzf-down --multi --preview-window right:70% \
+    --preview 'git show --color=always {} | head -'$LINES
+}
+
+fzf-gh() {
+  is_in_git_repo || return
+  git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
+  fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
+    --header 'Press CTRL-S to toggle sort' \
+    --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -'$LINES |
+  grep -o "[a-f0-9]\{7,\}"
+}
+
+fzf-gr() {
+  is_in_git_repo || return
+  git remote -v | awk '{print $1 "\t" $2}' | uniq |
+  fzf-down --tac \
+    --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1} | head -200' |
+  cut -d$'\t' -f1
+}
+
+join-lines() {
+  local item
+  while read item; do
+    echo -n "${(q)item} "
+  done
+}
+
+bind-git-helper() {
+  local c
+  for c in $@; do
+    eval "fzf-g$c-widget() { local result=\$(fzf-g$c | join-lines); zle reset-prompt; LBUFFER+=\$result }"
+    eval "zle -N fzf-g$c-widget"
+    eval "bindkey '^g^$c' fzf-g$c-widget"
+  done
+}
+bind-git-helper f b t r h
+unset -f bind-git-helper
