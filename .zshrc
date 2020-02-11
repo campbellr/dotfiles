@@ -183,7 +183,7 @@ fzf-gb() {
 
 fzf-gt() {
   is_in_git_repo || return
-  git tag --sort -version:refname |
+  git tag --sort=-comitterdate |
   fzf-down --multi --preview-window right:70% \
     --preview 'git show --color=always {} | head -'$LINES
 }
