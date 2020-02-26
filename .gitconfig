@@ -1,8 +1,10 @@
 [user]
   name = Ryan Campbell
   email = ryan.campbell@kirasystems.com
+	signingkey = 68AAD397B1C69A9574F84572923BC6AB4EEB29D7
 [commit]
   verbose = true
+	gpgsign = true
 [color]
   ui = auto
 [alias]
@@ -14,6 +16,7 @@
   rebase-upstream = !git rebase --onto $(git merge-base -a HEAD @{upstream})
   co = !git checkout $(git branch | fzf --height=40%)
   cor = !git checkout $(git branch -r | fzf --height=40%)
+  af = !git autofixup $(git merge-base -a HEAD @{u})
 
 [log]
   decorate = short
@@ -22,7 +25,7 @@
 [credential]
   helper = cache
 [core]
-  pager = less -RXF -x1,5
+  pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less -RXF -x1,5
   editor = nvim
 [diff]
   compactionHeuristic = true
