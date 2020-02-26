@@ -21,6 +21,9 @@ export WORKON_HOME="$HOME/.virtualenvs"
 
 #export NODE_EXTRA_CA_CERTS=~/.certs/ms-p-pki01-ca.crt
 
+# avoid "inappropriate ioctl for device" error with gpg
+export GPG_TTY=$(tty)
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
