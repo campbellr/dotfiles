@@ -15,6 +15,11 @@ export ZSH="$HOME/.oh-my-zsh"
 # FZF settings
 export FZF_BASE="$HOME/.local/share/nvim/plugged/fzf"
 
+# Make fzf respect .gitignore (by making it use 'fd').
+export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+
 # virtualenvwrapper settings
 export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python3"
 export WORKON_HOME="$HOME/.virtualenvs"
