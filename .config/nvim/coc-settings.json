@@ -6,15 +6,6 @@
   "python.linting.flake8Enabled": true,
   "python.formatting.blackArgs": ["--line-length", "79"],
   "python.linting.enabled": true,
-  "java.format.settings.url": "atb-eclipse-formatter-config.xml",
-  "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -Dfile.encoding=UTF-8",
-  "java.configuration.updateBuildConfiguration": "automatic",
-  "java.completion.importOrder": [
-    "java",
-    "javax",
-    "com",
-    "org"
-  ],
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "javascript",
@@ -23,5 +14,23 @@
     "java",
     "python"
   ],
-  "suggest.echodocSupport": true
+  "diagnostic.virtualText": true,
+  "suggest.echodocSupport": false,
+  "suggest.maxCompleteItemCount": 15,
+  "suggest.noselect": false,
+  "suggest.removeDuplicateItems": true,
+  "suggest.enablePreview": true,
+  "languageserver": {
+    "clojure-lsp": {
+      "command": "bash",
+      "args": ["-c", "cd /Users/ryancampbell/git/clojure-lsp && lein run"],
+      "filetypes": ["clojure"],
+      "disableDiagnostics": true,
+      "rootPatterns": ["deps.edn", "project.clj"],
+      "additionalSchemes": ["jar", "zipfile"],
+      "trace.server": "verbose",
+      "initializationOptions": {
+      }
+    }
+  }
 }
