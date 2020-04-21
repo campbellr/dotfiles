@@ -1,12 +1,3 @@
-runtime! debian.vim
-
-" build helper for vim-markdown composer
-function! BuildComposer(info)
-  if a:info.status != 'unchanged' || a:info.force
-    !cargo build --release
-  endif
-endfunction
-
 " vim-plug initialization
 call plug#begin('~/.local/share/nvim/plugged')
 
@@ -22,9 +13,6 @@ Plug 'FooSoft/vim-argwrap'
 " Vim plugin for fzf, a blazing fast fuzzy file finder written in Go
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" structured editing of lisp s-expressions
-"Plug 'kovisoft/paredit', { 'for': ['clojure', 'scheme'] }
-"Plug 'bhurlow/vim-parinfer', {'for': ['racket']}
 " A vim plugin that provides an easy way to brows the tags of the current file
 Plug 'majutsushi/tagbar'
 " Async grep/ack/ag search that loads matches into the location list
@@ -50,8 +38,6 @@ Plug 'tpope/vim-surround'
 " Easily create increasing/decreasing numbers of sequences across multiple
 " lines via visual mode
 Plug 'triglav/vim-visual-increment'
-" Live in-browser preview of markdown files
-Plug 'euclio/vim-markdown-composer', { 'for': 'markdown', 'do': function('BuildComposer') }
 " An internal wiki inspired (somewhat) by org-mode
 Plug 'vimwiki/vimwiki'
 " highlight whitespace
@@ -64,13 +50,8 @@ Plug 'junegunn/rainbow_parentheses.vim'
 " Plug 'easymotion/vim-easymotion'
 " Coverage reporting for vim
 Plug 'ruanyl/coverage.vim', { 'for': 'javascript' }
-" A test plugin
-" Plug 'janko-m/vim-test'
 " tmux-style window zooming
 Plug 'dhruvasagar/vim-zoom'
-
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
 
 Plug 'skywind3000/asyncrun.vim'
 
@@ -95,9 +76,6 @@ Plug 'thaerkh/vim-indentguides'
 Plug 'wlangstroth/vim-racket'
 Plug 'vim-scripts/scribble.vim'
 
-" a nice repl for vim
-" Plug 'rhysd/reply.vim'
-
 Plug 'guns/vim-sexp', { 'for': 'clojure'}
 Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
 Plug 'tpope/vim-repeat'
@@ -111,21 +89,10 @@ Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 
 " Adds neovim :terminal support to vim-dispatch
 Plug 'radenling/vim-dispatch-neovim'
-" Jack in to a Clojure REPL, inspired by the emacs cider-jack-in
-" NOTE: doesn't really do anything that vim-dispatch-neovim + fireplace does't
-" do better...
-" Plug 'clojure-vim/vim-jack-in'
-
 " disable because coc.nvim does the same thing
 "Plug 'itchyny/vim-cursorword'
 
 call plug#end()
-
-"let g:deoplete#enable_at_startup = 1
-"call deoplete#custom#option('keyword_patterns', {'clojure': '[\w!$%&*+/:<=>?@\^_~\-\.#]*'})
-
-"let g:SuperTabDefaultCompletionType = "<C-x><C-o>"
-
 
 " enable syntax coloring if available
 if has("syntax")
