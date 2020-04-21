@@ -17,6 +17,7 @@
   co = !git checkout $(git branch | fzf --height=40%)
   cor = !git checkout $(git branch -r | fzf --height=40%)
   af = !git autofixup $(git merge-base -a HEAD @{u})
+  nb = new-branch
 
 [log]
   decorate = short
@@ -42,4 +43,4 @@
   required = true
 
 [tig]
-  vertical-split = false
+  vertical-split = true
