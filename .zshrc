@@ -103,6 +103,7 @@ brew
 colored-man-pages
 colorize
 docker
+docker-compose
 fzf
 git
 golang
@@ -114,6 +115,9 @@ pip
 python
 ripgrep
 tmux
+urltools
+zsh-autosuggestions
+zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
