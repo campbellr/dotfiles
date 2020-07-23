@@ -35,3 +35,6 @@
 (nvim.ex.set :norelativenumber)
 (nvim.ex.set :cursorline)
 
+
+(u.autocmd :FileType :go ":setlocal shiftwidth=4")
+(u.autocmd :FileType :go ":setlocal tabstop=4")

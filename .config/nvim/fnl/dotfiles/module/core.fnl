@@ -13,3 +13,5 @@
 
 ;; Make Vim jump to the last position when reopening a file
 (u.autocmd :BufReadPost :* (u.viml->lua :dotfiles.module.core :jump-to-last-line))
+
+(u.autocmd "BufNewFile,BufRead" "Dockerfile*" "set ft=Dockerfile")

@@ -4,7 +4,7 @@
 path=($HOME/bin $path)
 
 # Add python (3) stuff to $PATH
-path=($HOME/Library/Python/3.7/bin $path)
+path=($HOME/Library/Python/3.8/bin $path)
 
 # Go stuff
 path=($HOME/go/bin $path)
@@ -153,6 +153,7 @@ alias vim="nvim"
 alias vimwiki="nvim -c VimwikiIndex"
 alias vimdiary="nvim -c VimwikiDiaryIndex"
 alias pgcli='LESS="-SRXF" pgcli'
+alias vscode='code'
 
 HISTSIZE=50000
 SAVEHIST=250000
