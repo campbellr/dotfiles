@@ -66,9 +66,6 @@
 ;; vim's :set sets both global and buffer option, this emulates that behaviour
 ;; TODO: maybe rename to setg?
 (defn gset [name value]
-      ;; Only attempt to set option if it is not nil
-      ;; (not all options have an equivalent buffer option)
-      (when (some? (. nvim.o name))
-        (a.assoc nvim.o name value))
-      (when (some? (. nvim.bo name))
-        (a.assoc nvim.bo name value)))
+  (pcall a.assoc nvim.o name value)
+  (pcall a.assoc nvim.bo name value)
+  (pcall a.assoc nvim.bo name value))

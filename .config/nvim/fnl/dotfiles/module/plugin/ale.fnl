@@ -2,9 +2,13 @@
   {require {nvim aniseed.nvim}})
 
 (set nvim.g.ale_linters {:clojure [:clj-kondo]
+                         :typescript: [:eslint]
+                         :typescriptreact: [:eslint]
                          :go      [:golangci-lint :gobuild]})
 (set nvim.g.ale_fixers {:python     [:black :isort]
                         :javascript [:prettier]
+                        :typescript [:prettier]
+                        :typescriptreact [:prettier]
                         :yaml [:prettier]})
 
 (set nvim.g.ale_fix_on_save true)

@@ -16,7 +16,7 @@
 (u.gset :shiftwidth 2)
 (u.gset :undodir (.. (nvim.fn.stdpath "data") "/undo"))
 (u.gset :incsearch false)
-(u.gset :completeopt "menuone,longest,preview")
+(u.gset :completeopt "menuone,noinsert,noselect")
 (u.gset :title true)
 (u.gset :switchbuf "usetab,newtab")
 (u.gset :updatetime 300)
