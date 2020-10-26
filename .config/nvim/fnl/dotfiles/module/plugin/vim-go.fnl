@@ -7,5 +7,7 @@
 (set nvim.g.go_highlight_functions true)
 (set nvim.g.go_highlight_methods true)
 (set nvim.g.go_term_enabled true)
+(set nvim.g.go_term_reuse true)
+(set nvim.g.go_term_close_on_exit false)
 
 (u.autocmd :FileType :go :nmap "<Leader>dt" (u.plug :go-def-tab))

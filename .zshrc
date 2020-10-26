@@ -105,15 +105,18 @@ colorize
 docker
 docker-compose
 fzf
+gcloud
 git
 golang
 jenv
+kubectl
 npm
 nvm
 osx
 pip
 python
 ripgrep
+ssh-agent
 tmux
 urltools
 zsh-autosuggestions
@@ -246,3 +249,8 @@ bind-git-helper() {
 }
 bind-git-helper f b t r h
 unset -f bind-git-helper
+
+
+# minikube
+
+MINIKUBE_MEM=10240

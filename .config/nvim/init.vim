@@ -85,8 +85,10 @@ if !exists('g:vscode')
   Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
   Plug 'nvim-treesitter/nvim-treesitter'
-  Plug 'neovim/nvim-lsp'
+  Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-lua/completion-nvim'
+
+  Plug 'rbong/vim-flog'
 
   call plug#end()
 
