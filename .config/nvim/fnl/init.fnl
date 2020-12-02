@@ -1,7 +1,7 @@
-(module dotfiles.init
+(module init
   {require {core aniseed.core
             nvim aniseed.nvim
-            util dotfiles.util}})
+            util util}})
 
 ;; Load all modules in no particular order.
 (->> (util.glob (.. util.config-path "/lua/dotfiles/module/*.lua"))

@@ -1,7 +1,7 @@
 (module dotfiles.module.plugin.nvim-lsp
   {require {u          dotfiles.util
             comp       completion
-            lsp        nvim_lsp}})
+            lsp        lspconfig}})
 
 (defn on-attach [client bufnr]
   ;; Configure nvim-lua/completion-nvim

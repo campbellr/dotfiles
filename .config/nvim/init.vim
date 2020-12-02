@@ -4,7 +4,7 @@ if !exists('g:vscode')
   " vim-plug initialization
   call plug#begin(stdpath('data') . '/plugged')
 
-  Plug 'Olical/aniseed', { 'tag': 'v3.6.1' }
+  Plug 'Olical/aniseed', { 'tag': 'v3.11.0' }
   " For Fennel highlighting (based on Clojure).
   Plug 'bakpakin/fennel.vim'
   Plug 'bakpakin/janet.vim'
@@ -92,7 +92,7 @@ if !exists('g:vscode')
 
   call plug#end()
 
-  lua require('aniseed.dotfiles')
+  lua require('aniseed.env').init()
 
 
   " FIXME: i can't seem to get this working from lua/fennel (nvim_set_keymap)
