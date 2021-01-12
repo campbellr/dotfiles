@@ -3,4 +3,4 @@
             u    dotfiles.util}})
 
 (u.augroup! :typescript
-  (fn [] (u.autocmd :BufReadPost "*.tsx" ":set filetype=typescript")))
+  (fn [] (u.autocmd :BufReadPost "*.tsx" ":set filetype=typescriptreact")))

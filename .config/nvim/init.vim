@@ -90,6 +90,8 @@ if !exists('g:vscode')
 
   Plug 'rbong/vim-flog'
 
+  Plug 'chr4/nginx.vim'
+
   call plug#end()
 
   lua require('aniseed.env').init()

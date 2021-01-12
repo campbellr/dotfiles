@@ -15,7 +15,7 @@
   graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
   hist = log --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --date=short
   dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy  | less --tabs=4 -RFX; }; f"
-  redate = !EDITOR=true git rebase --interactive --onto $(git merge-base -a HEAD @{upstream}) --exec 'sleep 1 && git commit --amend --date=now --no-edit'
+  redate = !EDITOR=true git rebase --onto $(git merge-base -a HEAD @{upstream}) --exec 'sleep 1 && git commit --amend --date=now --no-edit'
   rebase-upstream = !git rebase --onto $(git merge-base -a HEAD @{upstream})
   co = !git checkout $(git branch | fzf --height=40%)
   cor = !git checkout $(git branch -r | fzf --height=40%)
@@ -24,6 +24,7 @@
 
 [log]
   decorate = short
+	date = local
 
 [rebase]
   autosquash = true
@@ -55,14 +56,14 @@
   prune = true
 
 [tig]
-  vertical-split = true
+#  vertical-split = true
 
 [url "git@github.com:kirasystems/"]
 	insteadOf = https://github.com/kirasystems/
 [filter "lfs"]
 	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge --skip -- %f
-	process = git-lfs filter-process --skip
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
 	required = true
 [pull]
 	ff = only

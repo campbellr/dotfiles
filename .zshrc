@@ -4,7 +4,7 @@
 path=($HOME/bin $path)
 
 # Add python (3) stuff to $PATH
-path=($HOME/Library/Python/3.8/bin $path)
+path=($HOME/Library/Python/3.9/bin $path)
 
 # Go stuff
 path=($HOME/go/bin $path)
@@ -102,6 +102,7 @@ plugins=(
 brew
 colored-man-pages
 colorize
+direnv
 docker
 docker-compose
 fzf
@@ -254,3 +255,4 @@ unset -f bind-git-helper
 # minikube
 
 MINIKUBE_MEM=10240
+export PATH="/usr/local/opt/curl/bin:$PATH"
