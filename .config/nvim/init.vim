@@ -91,6 +91,9 @@ if !exists('g:vscode')
 
   Plug 'chr4/nginx.vim'
 
+  Plug 'hashivim/vim-terraform'
+  Plug 'godlygeek/tabular'
+
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'

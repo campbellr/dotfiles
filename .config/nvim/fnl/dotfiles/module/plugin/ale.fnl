@@ -2,6 +2,7 @@
   {require {nvim aniseed.nvim}})
 
 (set nvim.g.ale_linters {:clojure          [:clj-kondo]
+                         :terraform        [:terraform]
                          :typescript:      [:eslint]
                          :typescriptreact: [:eslint]
                          :go               [:golangci-lint :gobuild]
@@ -9,6 +10,7 @@
                          :bash             [:shellcheck]})
 (set nvim.g.ale_fixers {:python     [:black :isort]
                         :javascript [:prettier]
+                        :terraform  [:terraform]
                         :typescript [:prettier]
                         :typescriptreact [:prettier]
                         :yaml [:prettier]})

@@ -118,6 +118,7 @@ pip
 python
 ripgrep
 ssh-agent
+terraform
 tmux
 urltools
 zsh-autosuggestions
