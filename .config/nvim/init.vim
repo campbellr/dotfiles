@@ -139,3 +139,5 @@ if exists('g:started_by_firenvim')
   augroup END
 
 endif
+
+au filetype markdown setlocal textwidth=80
