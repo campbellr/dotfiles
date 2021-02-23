@@ -100,6 +100,8 @@ if !exists('g:vscode')
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
 
+  Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+
   call plug#end()
 
   lua require('aniseed.env').init()
