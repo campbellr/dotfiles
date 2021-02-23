@@ -94,6 +94,8 @@ if !exists('g:vscode')
   Plug 'hashivim/vim-terraform'
   Plug 'godlygeek/tabular'
 
+  Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
@@ -108,5 +110,32 @@ if !exists('g:vscode')
     \ pumvisible() ? "\<C-n>" :
     \ IsPrevSpace() ? "\<TAB>" :
     \ deoplete#manual_complete()
+
+endif
+
+if exists('g:started_by_firenvim')
+  set guifont=FiraCode:h20
+
+  let g:dont_write = v:false
+  function! My_Write(timer) abort
+    let g:dont_write = v:false
+    write
+  endfunction
+
+  function! Delay_My_Write() abort
+    if g:dont_write
+      return
+    end
+    let g:dont_write = v:true
+    call timer_start(5000, 'My_Write')
+  endfunction
+
+  " Automatically sync all writes to the textarea (instead of needing to save
+  " with :w
+  augroup firenvim
+    au!
+    au TextChanged * ++nested call Delay_My_Write()
+    au TextChangedI * ++nested call Delay_My_Write()
+  augroup END
 
 endif
