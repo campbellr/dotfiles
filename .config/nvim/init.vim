@@ -70,7 +70,6 @@ if !exists('g:vscode')
   Plug 'guns/vim-sexp', { 'for': ['clojure', 'scheme', 'lisp', 'fennel', 'janet']}
   Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': ['clojure', 'scheme', 'lisp', 'fennel', 'janet']}
   Plug 'tpope/vim-repeat'
-  Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   " A faster parinfer implementation in rust
@@ -91,6 +90,10 @@ if !exists('g:vscode')
   Plug 'rbong/vim-flog'
 
   Plug 'chr4/nginx.vim'
+
+  Plug 'nvim-lua/popup.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
 
   call plug#end()
 
