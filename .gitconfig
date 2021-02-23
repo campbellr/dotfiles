@@ -21,6 +21,7 @@
   cor = !git checkout $(git branch -r | fzf --height=40%)
   af = !git autofixup $(git merge-base -a HEAD @{u})
   nb = new-branch
+  frb = !git fetch && git rebase -i @{upstream}
 
 [log]
   decorate = short
