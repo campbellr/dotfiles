@@ -100,6 +100,8 @@ if !exists('g:vscode')
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
 
+  Plug 'tpope/vim-vinegar'
+
   Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
   call plug#end()
