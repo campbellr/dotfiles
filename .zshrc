@@ -252,8 +252,52 @@ bind-git-helper() {
 bind-git-helper f b t r h
 unset -f bind-git-helper
 
+# Search all jira issues (no filter)
+fzf-ji() {
+  jira issue list --limit 9999 --plain --no-headers 2>/dev/null | \
+    fzf-down --tac | \
+    awk '{ print $2 }'
+}
+
+# Search all jira bugs
+fzf-jb() {
+  jira issue list --limit 9999 --type Bug --plain --no-headers 2>/dev/null | \
+    fzf-down --tac | \
+    awk '{ print $2 }'
+}
+
+# Search all jira epics
+fzf-je() {
+  jira issue list --limit 9999 --type Epic --plain --no-headers 2>/dev/null | \
+    fzf-down --tac | \
+    awk '{ print $2 }'
+}
+
+# Search all jira Stories
+fzf-js() {
+  jira issue list --limit 9999 --type Story --plain --no-headers 2>/dev/null | \
+    fzf-down --tac | \
+    awk '{ print $2 }'
+}
+
+bind-jira-helper() {
+  local c
+  for c in $@; do
+    eval "fzf-j$c-widget() { local result=\$(fzf-j$c | join-lines); zle reset-prompt; LBUFFER+=\$result }"
+    eval "zle -N fzf-j$c-widget"
+    eval "bindkey '^j^$c' fzf-j$c-widget"
+  done
+}
+
+bind-jira-helper i b e s
+unset -f bind-jira-helper
 
 # minikube
 
 MINIKUBE_MEM=10240
 export PATH="/usr/local/opt/curl/bin:$PATH"
+
+
+
+# jira-cli
+eval "$(jira completion zsh)"
