@@ -19,3 +19,6 @@
 
 ;; Set up typescript/javascript LS
 (lsp.tsserver.setup {:on_attach on-attach})
+
+;; set up python LS
+(lsp.jedi_language_server.setup {:on_attach on-attach})
