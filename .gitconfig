@@ -3,6 +3,9 @@
   email = ryan.campbell@kirasystems.com
 	signingkey = 68AAD397B1C69A9574F84572923BC6AB4EEB29D7
 
+[mailmap]
+  file = ~/.config/git/mailmap
+
 [commit]
   verbose = true
 	gpgsign = true
