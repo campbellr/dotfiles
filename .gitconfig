@@ -28,7 +28,8 @@
 
 [log]
   decorate = short
-	date = local
+  date = local
+  mailmap = true
 
 [rebase]
   autosquash = true
