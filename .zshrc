@@ -9,6 +9,9 @@ path=($HOME/Library/Python/3.9/bin $path)
 # Go stuff
 path=($HOME/go/bin $path)
 
+# diff-highlight
+path=("$(brew --prefix git)/share/git-core/contrib/diff-highlight" $path)
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
