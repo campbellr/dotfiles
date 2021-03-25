@@ -15,7 +15,8 @@
   (u.nnoremap "1gD" "<cmd>lua vim.lsp.buf.type_definition()<CR>")
   (u.nnoremap "gr" "<cmd>lua vim.lsp.buf.references()<CR>")
   (u.nnoremap "g0" "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
-  (u.nnoremap "gW" "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>"))
+  (u.nnoremap "gW" "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
+  (u.nnoremap "<space>rn" "<cmd>lua vim.lsp.buf.rename()<CR>"))
 
 ;; Set up typescript/javascript LS
 (lsp.tsserver.setup {:on_attach on-attach})

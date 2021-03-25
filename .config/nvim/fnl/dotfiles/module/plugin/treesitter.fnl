@@ -2,4 +2,5 @@
   {require {nvim aniseed.nvim
             ts-config nvim-treesitter.configs}})
 
-(ts-config.setup { :highlight { :enable true}})
+(ts-config.setup {:highlight {:enable true}
+                  :autotag   {:enable true}})
