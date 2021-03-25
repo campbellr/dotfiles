@@ -23,3 +23,6 @@
 
 ;; set up python LS
 (lsp.jedi_language_server.setup {:on_attach on-attach})
+
+;; gopls
+(lsp.gopls.setup {:on_attach on-attach})

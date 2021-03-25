@@ -3,6 +3,9 @@
             u     dotfiles.util}
    require-macros [dotfiles.macros]})
 
+(set nvim.g.go_code_completion_enabled false)
+(set nvim.g.go_gopls_enabled false)
+
 (set nvim.g.go_alternative_mode :vsplit)
 (set nvim.g.go_fmt_command :goimports)
 (set nvim.g.go_highlight_functions true)

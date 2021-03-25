@@ -70,7 +70,6 @@ if !exists('g:vscode')
   Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': ['clojure', 'scheme', 'lisp', 'fennel', 'janet']}
   Plug 'tpope/vim-repeat'
 
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   " A faster parinfer implementation in rust
   Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
   " Adds neovim :terminal support to vim-dispatch
