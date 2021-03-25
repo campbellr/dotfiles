@@ -1,6 +1,7 @@
 (module dotfiles.module.core
   {require {nvim aniseed.nvim
-            u    dotfiles.util}})
+            u    dotfiles.util}
+   require-macros [dotfiles.macros]})
 
 ;; NOTE: Most config is now in dotfiles/module/after/core.fnl to
 ;;       ensure it loads *after* vim-better-defaults
@@ -12,6 +13,6 @@
       (nvim.ex.normal_ "g'\""))))
 
 ;; Make Vim jump to the last position when reopening a file
-(u.autocmd :BufReadPost :* (u.viml->lua :dotfiles.module.core :jump-to-last-line))
+(autocmd :BufReadPost :* (viml->fn jump-to-last-line))
 
-(u.autocmd "BufNewFile,BufRead" "Dockerfile*" "set ft=Dockerfile")
+(autocmd "BufNewFile,BufRead" "Dockerfile*" "set ft=Dockerfile")

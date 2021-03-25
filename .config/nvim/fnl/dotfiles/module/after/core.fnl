@@ -1,12 +1,13 @@
 (module dotfiles.module.after.core
   {require {nvim aniseed.nvim
-            u    dotfiles.util}})
+            u    dotfiles.util}
+   require-macros [dotfiles.macros]})
 ;; Core neovim configuration.
 ;;
 ;; NOTE: these to be here in after/ in order to not get overridden by
 ;; vim-better-defaults.
 
-(nvim.ex.colorscheme :gruvbox)
+(_: colorscheme :gruvbox)
 
 (u.gset :mouse "a")
 (u.gset :termguicolors true)
@@ -30,11 +31,11 @@
 
 
 ;; Not sure why i can't set these through the options api...
-(nvim.ex.set :signcolumn=yes)
-(nvim.ex.set :shortmess+=c)
-(nvim.ex.set :norelativenumber)
-(nvim.ex.set :cursorline)
+(_: set :signcolumn=yes)
+(_: set :shortmess+=c)
+(_: set :norelativenumber)
+(_: set :cursorline)
 
 
-(u.autocmd :FileType :go ":setlocal shiftwidth=4")
-(u.autocmd :FileType :go ":setlocal tabstop=4")
+(autocmd :FileType :go ":setlocal shiftwidth=4")
+(autocmd :FileType :go ":setlocal tabstop=4")

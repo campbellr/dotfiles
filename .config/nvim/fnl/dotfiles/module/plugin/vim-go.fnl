@@ -1,6 +1,7 @@
 (module dotfiles.module.plugin.vim-go
   {require { nvim aniseed.nvim
-            u     dotfiles.util}})
+            u     dotfiles.util}
+   require-macros [dotfiles.macros]})
 
 (set nvim.g.go_alternative_mode :vsplit)
 (set nvim.g.go_fmt_command :goimports)
@@ -10,4 +11,4 @@
 (set nvim.g.go_term_reuse true)
 (set nvim.g.go_term_close_on_exit false)
 
-(u.autocmd :FileType :go :nmap "<Leader>dt" (u.plug :go-def-tab))
+(autocmd :FileType :go :nmap "<Leader>dt" (u.plug :go-def-tab))

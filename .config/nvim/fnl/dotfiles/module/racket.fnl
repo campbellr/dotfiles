@@ -1,11 +1,12 @@
 (module dotfiles.module.racket
   {require {nvim aniseed.nvim
-            u    dotfiles.util}})
+            u    dotfiles.util}
+   require-macros [dotfiles.macros]})
 
-(u.augroup! :racket-group
-  (fn [] (u.autocmd :BufReadPost "*.rkt,*.rktl" ":set filetype=racket")
-         (u.autocmd :FileType :racket ":set lisp")
-         (u.autocmd :FileType :racket ":set autoindent")
-
-         (u.autocmd "BufRead,BufNewFile" "*.scrbl" ":set filetype scribble")))
+(augroup
+  racket
+  (autocmd :BufReadPost "*.rkt,*.rktl" ":set filetype=racket")
+  (autocmd :FileType :racket ":set lisp")
+  (autocmd :FileType :racket ":set autoindent")
+  (autocmd "BufRead,BufNewFile" "*.scrbl" ":set filetype scribble"))
 

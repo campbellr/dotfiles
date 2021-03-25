@@ -1,6 +1,8 @@
 (module dotfiles.module.typescript
   {require {nvim aniseed.nvim
-            u    dotfiles.util}})
+            u    dotfiles.util}
+   require-macros [dotfiles.macros]})
 
-(u.augroup! :typescript
-  (fn [] (u.autocmd :BufReadPost "*.tsx" ":set filetype=typescriptreact")))
+(augroup
+  typescript
+  (autocmd :BufReadPost "*.tsx" ":set filetype=typescriptreact"))

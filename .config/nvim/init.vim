@@ -4,7 +4,7 @@ if !exists('g:vscode')
   " vim-plug initialization
   call plug#begin(stdpath('data') . '/plugged')
 
-  Plug 'Olical/aniseed', { 'tag': 'v3.11.0' }
+  Plug 'Olical/aniseed', { 'tag': 'v3.16.0' }
   " For Fennel highlighting (based on Clojure).
   Plug 'bakpakin/fennel.vim'
   Plug 'bakpakin/janet.vim'

@@ -1,7 +1,8 @@
 (module dotfiles.module.plugin.vimwiki
   {require {nvim aniseed.nvim
             u    dotfiles.util
-            git  dotfiles.git}})
+            git  dotfiles.git}
+   require-macros [dotfiles.macros]})
 
 (def vimwiki-dir "~/.vimwiki/")
 
@@ -15,26 +16,28 @@
 (set nvim.g.vimwiki_global_ext 0)
 
 (defn- ft-map [from to]
-  (u.autocmd :FileType :vimwiki :nmap :<buffer> (.. :<LocalLeader> from) to))
-
-;; mappings
-(ft-map :k ":VimwikiDiaryPrevDay<CR>")
-(ft-map :j ":VimwikiDiaryNextDay<CR>")
+  (autocmd :FileType :vimwiki :nmap :<buffer> (.. :<LocalLeader> from) to))
 
 (defn commit-and-push []
-  (nvim.ex.lcd vimwiki-dir)
+  (_: lcd vimwiki-dir)
   (let [path     (u.expand "%")
         filename (u.expand "%:t")]
     (git.git-add path)
     (git.git-commit (.. "Auto commit of " filename))
     (git.git-push "origin" "HEAD:master"))
-  (nvim.ex.lcd "-"))
+  (_: lcd "-"))
 
-;; Automatically commit to git repo on write.
-(u.autocmd!
-  :BufWritePost
-  (.. vimwiki-dir "*")
-  (u.viml->lua :dotfiles.module.plugin.vimwiki :commit-and-push))
+(augroup
+  vimwiki-config
+  ;; mappings
+  (ft-map :k ":VimwikiDiaryPrevDay<CR>")
+  (ft-map :j ":VimwikiDiaryNextDay<CR>")
 
-;; turn off word wrap in vimwiki
-(u.autocmd! "BufNewFile,BufRead" "*.wiki" ":set nowrap")
+  ;; Automatically commit to git repo on write.
+  (autocmd
+    :BufWritePost
+    (.. vimwiki-dir "*")
+    (viml->fn commit-and-push))
+
+  ;; turn off word wrap in vimwiki
+  (autocmd "BufNewFile,BufRead" "*.wiki" ":set nowrap"))

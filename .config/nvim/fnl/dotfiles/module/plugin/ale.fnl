@@ -1,6 +1,7 @@
 (module dotfiles.module.plugin.ale
   {require {nvim aniseed.nvim
-            u    dotfiles.util}})
+            u    dotfiles.util}
+   require-macros [dotfiles.macros]})
 
 (set nvim.g.ale_linters {:clojure          [:clj-kondo]
                          :terraform        [:terraform]
@@ -21,8 +22,8 @@
 (set nvim.g.ale_go_golangci_lint_options "")
 (set nvim.g.ale_go_golangci_lint_package 1)
 
-(u.augroup :I18Next
-  #(u.autocmd! "BufNewFile,BufRead" "en.json" "let b:ale_json_jq_filters = '-f ~/sort-keys-nocase.jq'"))
+(augroup i18next
+  (autocmd "BufNewFile,BufRead" "en.json" "let b:ale_json_jq_filters = '-f ~/sort-keys-nocase.jq'"))
 
 ;; run jq *only* on i18next translation files
 (set nvim.g.ale_pattern_options {"en\\.json$" {:ale_fixers [:jq]}})

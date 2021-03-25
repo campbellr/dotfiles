@@ -2,12 +2,6 @@
   {require {a    aniseed.core
             nvim aniseed.nvim}})
 
-(defn autocmd [...]
-  (nvim.ex.autocmd ...))
-
-(defn autocmd! [...]
-  (nvim.ex.autocmd_ ...))
-
 (defn escape [s]
   (nvim.fn.shellescape s))
 
@@ -24,17 +18,6 @@
   (nvim.ex.luafile path))
 
 (def config-path (nvim.fn.stdpath "config"))
-
-(defn augroup [name f]
-  (nvim.ex.augroup name)
-  (f)
-  (nvim.ex.augroup :END))
-
-(defn augroup! [name f]
-  (nvim.ex.augroup name)
-  (autocmd!)
-  (f)
-  (nvim.ex.augroup :END))
 
 (defn noremap [mode from to]
   (nvim.set_keymap
@@ -57,11 +40,6 @@
 
 (defn plug [cmd]
   (.. "<Plug>(" cmd ")"))
-
-;; Copied from Olical/conjure
-(defn viml->lua [m f opts]
-  (.. "lua require('" m "')['" f "']("
-      (or (and opts opts.args) "") ")"))
 
 ;; vim's :set sets both global and buffer option, this emulates that behaviour
 ;; TODO: maybe rename to setg?

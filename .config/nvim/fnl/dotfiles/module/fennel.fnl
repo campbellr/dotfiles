@@ -2,7 +2,8 @@
   {require {nvim aniseed.nvim
             nu   aniseed.nvim.util
             a    aniseed.core
-            u    dotfiles.util}})
+            u    dotfiles.util}
+   require-macros [dotfiles.macros]})
 
 (defn empty-buffer? []
   (-> (nvim.buf_get_lines 0 0 1 false)
@@ -35,5 +36,6 @@
 
 
 ;; Automatically insert a (module ...) form for new files in my aniseed dotfiles
-(u.augroup! :aniseed-group
-  #(u.autocmd :FileType :fennel (u.viml->lua :dotfiles.module.fennel :insert-aniseed-module)))
+(augroup
+  aniseed-group
+  (autocmd :FileType :fennel (viml->fn insert-aniseed-module)))
