@@ -25,4 +25,5 @@
 (lsp.jedi_language_server.setup {:on_attach on-attach})
 
 ;; gopls
-(lsp.gopls.setup {:on_attach on-attach})
+(lsp.gopls.setup {:on_attach on-attach
+                  :cmd ["gopls" "-remote=auto"]})
