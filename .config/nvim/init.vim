@@ -63,7 +63,6 @@ if !exists('g:vscode')
   Plug 'morhetz/gruvbox'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'thaerkh/vim-indentguides'
   " racket
   Plug 'wlangstroth/vim-racket'
   Plug 'vim-scripts/scribble.vim'
@@ -103,6 +102,9 @@ if !exists('g:vscode')
   Plug 'tpope/vim-vinegar'
 
   Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+
+  Plug 'lukas-reineke/indent-blankline.nvim', {'branch': 'lua'}
+
 
   call plug#end()
 
