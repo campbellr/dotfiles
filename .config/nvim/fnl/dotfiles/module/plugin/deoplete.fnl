@@ -10,6 +10,9 @@
    ;; autocompletion is too slow, disable it and only complete on <TAB>
    :auto_complete false})
 
+(defn- t [s]
+  (nvim.replace_termcodes s true true true))
+
 (defn- matches? [pattern s]
   (>= (nvim.fn.match pattern s) 0))
 
@@ -27,18 +30,12 @@
   "TAB should trigger code completion but only if the previous
   character isn't a space."
   (if (~= (nvim.fn.pumvisible) 0)
-    :<C-n>
+    (t :<C-n>)
     (is-prev-space?)
-    :<TAB>
+    (t :<TAB>)
     (nvim.fn.deoplete#manual_complete)))
 
-;; viml->lua doesn't as a map expression, so we fall back to fn-bridge
-(u.fn-bridge :MaybeTabComplete :dotfiles.module.plugin.deoplete :tab-complete {:return true})
-(u.fn-bridge :IsPrevSpace :dotfiles.module.plugin.deoplete :is-prev-space? {:return true})
+;; NOTE: we have to use fn-bridge here because neither "lua <foo>" no "v:lua" work in an expression
+(u.fn-bridge :MaybeTabComplete *module-name* :tab-complete {:return true})
 
-;; FIXME: can't figure out how to get this to insert the actual key codes instead of the string...
-(comment (nvim.set_keymap)
-        :i
-        :<TAB>
-        "MaybeTabComplete()"
-        {:silent true :noremap true :expr true})
+(nvim.set_keymap :i :<TAB> "MaybeTabComplete()" {:silent true :noremap true :expr true})

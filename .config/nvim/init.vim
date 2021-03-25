@@ -107,17 +107,11 @@ if !exists('g:vscode')
 
   Plug 'lukas-reineke/indent-blankline.nvim', {'branch': 'lua'}
 
+  Plug 'windwp/nvim-ts-autotag'
 
   call plug#end()
 
   lua require('aniseed.env').init()
-
-
-  " FIXME: i can't seem to get this working from lua/fennel (nvim_set_keymap)
-  inoremap <silent> <expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ IsPrevSpace() ? "\<TAB>" :
-    \ deoplete#manual_complete()
 
 endif
 
