@@ -111,7 +111,8 @@ if !exists('g:vscode')
 
   call plug#end()
 
-  lua require('aniseed.env').init()
+  let g:aniseed#env = v:true
+
 
 endif
 
