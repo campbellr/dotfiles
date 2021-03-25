@@ -103,6 +103,8 @@ if !exists('g:vscode')
 
   Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
+  Plug 'cohama/lexima.vim'
+
   Plug 'lukas-reineke/indent-blankline.nvim', {'branch': 'lua'}
 
 
