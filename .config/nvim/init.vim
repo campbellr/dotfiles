@@ -4,7 +4,7 @@ if !exists('g:vscode')
   " vim-plug initialization
   call plug#begin(stdpath('data') . '/plugged')
 
-  Plug 'Olical/aniseed', { 'tag': 'v3.16.0' }
+  Plug 'Olical/aniseed', { 'tag': 'v3.17.0' }
   " For Fennel highlighting (based on Clojure).
   Plug 'bakpakin/fennel.vim'
   Plug 'bakpakin/janet.vim'
@@ -100,13 +100,28 @@ if !exists('g:vscode')
 
   Plug 'tpope/vim-vinegar'
 
-  Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+  Plug 'norcalli/nvim-colorizer.lua'
 
   Plug 'cohama/lexima.vim'
 
   Plug 'lukas-reineke/indent-blankline.nvim', {'branch': 'lua'}
 
   Plug 'windwp/nvim-ts-autotag'
+
+  Plug 'onsails/lspkind-nvim'
+
+  Plug 'kyazdani42/nvim-web-devicons'
+
+  " Add missing LSP highlight groups to gruvbox theme
+  Plug 'folke/lsp-colors.nvim'
+
+  Plug 'pwntester/octo.nvim'
+
+  Plug 'jparise/vim-graphql'
+
+  Plug 'samoshkin/vim-mergetool'
+
+  Plug 'freitass/todo.txt-vim'
 
   call plug#end()
 
@@ -117,6 +132,9 @@ endif
 
 if exists('g:started_by_firenvim')
   set guifont=FiraCode:h20
+
+  " Disable firenvim by default
+  let s:fc['.*'] = { 'selector': '', 'priority': 0 }
 
   let g:dont_write = v:false
   function! My_Write(timer) abort

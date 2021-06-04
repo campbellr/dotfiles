@@ -6,6 +6,14 @@
 [mailmap]
   file = ~/.config/git/mailmap
 
+[merge]
+tool = vim_mergetool
+conflictStyle = diff3
+
+[mergetool "vim_mergetool"]
+cmd = nvim -f -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
+trustExitCode = true
+
 [commit]
   verbose = true
 	gpgsign = true
@@ -32,7 +40,7 @@
   mailmap = true
 
 [rebase]
-  autosquash = true
+  autosquash = false
 
 [credential]
   helper = cache
@@ -46,6 +54,7 @@
     minus-color = "#340001"
     syntax-theme = Monokai Extended
     line-numbers = true
+    side-by-side = false
 
 [interactive]
     diffFilter = delta --color-only
@@ -53,6 +62,7 @@
 [diff]
   compactionHeuristic = true
   colorMoved = default
+  algorithm = histogram
 
 [fsck]
   zeroPaddedFilemode = ignore
@@ -65,10 +75,12 @@
 
 [url "git@github.com:kirasystems/"]
 	insteadOf = https://github.com/kirasystems/
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
 [pull]
 	ff = only

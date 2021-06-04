@@ -10,10 +10,16 @@
                            :path_html "~/public_html/"
                            :maxhi     1
                            :auto_tags 1
+                           :auto_diary_index 1
+                           :auto_generate_links 1
+                           :auto_generate_tags 1
+                           :auto_toc 1
                            :syntax    "markdown"
                            :ext       ".md"}])
 
 (set nvim.g.vimwiki_global_ext 0)
+(set nvim.g.vimwiki_auto_chdir 1)
+(set nvim.g.vimwiki_auto_header 1)
 
 (defn- ft-map [from to]
   (autocmd :FileType :vimwiki :nmap :<buffer> (.. :<LocalLeader> from) to))
@@ -29,15 +35,24 @@
 
 (augroup
   vimwiki-config
-  ;; mappings
-  (ft-map :k ":VimwikiDiaryPrevDay<CR>")
-  (ft-map :j ":VimwikiDiaryNextDay<CR>")
+  ;; FIXME: for some reason the `...` vararg syntax isn't working in the macro
+  ;; correctly, so we need to wrap the body in a do
+  (do (ft-map :k ":VimwikiDiaryPrevDay<CR>")
+      (ft-map :j ":VimwikiDiaryNextDay<CR>")
+      (autocmd
+        :BufWritePost
+        (.. vimwiki-dir "*")
+        (viml->fn commit-and-push))))
 
-  ;; Automatically commit to git repo on write.
-  (autocmd
-    :BufWritePost
-    (.. vimwiki-dir "*")
-    (viml->fn commit-and-push))
+;; fancy checkmarks
+;;(set nvim.g.vimwiki_listsyms " ○◐●✓")
+;;(set nvim.g.vimwiki_listsym_rejected "✗")
 
-  ;; turn off word wrap in vimwiki
-  (autocmd "BufNewFile,BufRead" "*.wiki" ":set nowrap"))
+;; Show all pending and completed tasks
+;; :vimgrep "[*-\d+] \[[ x]\]" **/*.md
+
+;; Show all completed tasks
+;; :vimgrep "[*-\d+] \[x\]" **/*.md
+
+;; Show all uncompleted tasks
+;; :vimgrep "[*-\d+] \[ \]" **/*.md

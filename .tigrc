@@ -8,13 +8,14 @@ set vertical-split = false
 set git-colors = no
 set truncation-delimiter  = ~   # Character drawn for truncations, or "utf-8"
 set mailmap = true
+set line-graphics = utf-8
 
 # General colors
 color default                       246         235
 color cursor                        223         236
 color status                        default     default
-color title-focus                   default     default
-color title-blur                    default     default
+color title-focus                   223         237
+color title-blur                    222         236
 color delimiter                     245         default
 color header                        66          default         bold
 color section                       172         default
