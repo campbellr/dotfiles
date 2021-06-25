@@ -1,4 +1,4 @@
-# [Created by task 2.4.4 8/29/2016 15:41:01]
+# [Created by task 2.5.3 6/14/2021 10:50:35]
 # Taskwarrior program configuration file.
 # For more documentation, see http://taskwarrior.org or try 'man task', 'man task-color',
 # 'man task-sync' or 'man taskrc'
@@ -13,54 +13,7 @@
 # Files
 data.location=~/.task
 
-# Color theme (uncomment one to use)
-#include /usr/share/doc/task/rc/light-16.theme
-#include /usr/share/doc/task/rc/light-256.theme
-#include /usr/share/doc/task/rc/dark-16.theme
-#include /usr/share/doc/task/rc/dark-256.theme
-#include /usr/share/doc/task/rc/dark-red-256.theme
-#include /usr/share/doc/task/rc/dark-green-256.theme
-#include /usr/share/doc/task/rc/dark-blue-256.theme
-#include /usr/share/doc/task/rc/dark-violets-256.theme
-#include /usr/share/doc/task/rc/dark-yellow-green.theme
-#include /usr/share/doc/task/rc/dark-gray-256.theme
-#include /usr/share/doc/task/rc/dark-gray-blue-256.theme
-#include /usr/share/doc/task/rc/solarized-dark-256.theme
-#include /usr/share/doc/task/rc/solarized-light-256.theme
-#include /usr/share/doc/task/rc/no-color.theme
+include ~/.themes/taskwarrior/gruvbox-dark-256.theme
 
-# Tweak urgency calculation
-urgency.user.tag.gitlab:enhancement.coefficient=-1.5
-
-# Bugwarrior UDAs
-uda.gitlabdownvotes.type=numeric
-uda.gitlabdownvotes.label=Gitlab Downvotes
-uda.gitlabupvotes.type=numeric
-uda.gitlabupvotes.label=Gitlab Upvotes
-uda.gitlaburl.type=string
-uda.gitlaburl.label=Gitlab URL
-uda.gitlabcreatedon.type=date
-uda.gitlabcreatedon.label=Gitlab Created
-uda.gitlabwip.type=numeric
-uda.gitlabwip.label=Gitlab MR Work-In-Progress Flag
-uda.gitlabtitle.type=string
-uda.gitlabtitle.label=Gitlab Title
-uda.gitlabmilestone.type=string
-uda.gitlabmilestone.label=Gitlab Milestone
-uda.gitlabstate.type=string
-uda.gitlabstate.label=Gitlab Issue/MR State
-uda.gitlabauthor.type=string
-uda.gitlabauthor.label=Gitlab Author
-uda.gitlabnumber.type=numeric
-uda.gitlabnumber.label=Gitlab Issue/MR #
-uda.gitlabdescription.type=string
-uda.gitlabdescription.label=Gitlab Description
-uda.gitlabassignee.type=string
-uda.gitlabassignee.label=Gitlab Assignee
-uda.gitlabrepo.type=string
-uda.gitlabrepo.label=Gitlab Repo Slug
-uda.gitlabupdatedat.type=date
-uda.gitlabupdatedat.label=Gitlab Updated
-uda.gitlabtype.type=string
-uda.gitlabtype.label=Gitlab Type
-# END Bugwarrior UDAs
+# make priority L lower than task with no priority
+uda.priority.values=H,M,,L
