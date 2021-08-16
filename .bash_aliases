@@ -8,6 +8,5 @@ if [ -x /usr/bin/dircolors ]; then
     alias less='less -R'
 fi
 
-alias gmp='cd $GOPATH/src/gitlab.spgear.lab.emc.com/dolphin/go-mongo-proxy'
 alias bell='echo -e "\a"'
 alias grepc='grep --color=always'

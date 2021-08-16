@@ -7,13 +7,9 @@ log.file = /localhome/campbr9/.config/bugwarrior/bugwarrior.log
 
 [gitlab]
 service = gitlab
-gitlab.login = campbr9
-gitlab.token = 6zMhC64rQPFxBQLqJzrs
-gitlab.host = gitlab.spgear.lab.emc.com
 gitlab.import_labels_as_tags = True
 gitlab.label_template = gitlab:{{label}}
 gitlab.include_todos = True
 gitlab.only_if_author = True
 gitlab.only_if_assigned = True
 gitlab.verify_ssl = False
-gitlab.exclude_repos = dolphin/go-mongo-proxy
