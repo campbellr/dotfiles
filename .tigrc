@@ -1,7 +1,7 @@
 # tig settings (from https://github.com/ninjabreakbot/tig-gruvbox)
 set main-view-date = custom
 set main-view-date-format = "%Y-%m-%d"
-set main-view = date:relative author:full commit-title:graph=true,refs=true
+set main-view = date:relative author:full id:display=yes,width=10 commit-title:graph=true,refs=true
 set diff-view = line-number:display=false text:commit-title-overflow=true
 set diff-highlight = true
 set vertical-split = false
