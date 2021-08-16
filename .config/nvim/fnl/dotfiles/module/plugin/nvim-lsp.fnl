@@ -27,3 +27,5 @@
 ;; gopls
 (lsp.gopls.setup {:on_attach on-attach
                   :cmd ["gopls" "-remote=auto"]})
+
+(lsp.terraformls.setup {:on_attach on-attach})
