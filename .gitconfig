@@ -1,7 +1,6 @@
 [user]
   name = Ryan Campbell
-  email = ryan.campbell@kirasystems.com
-	signingkey = 68AAD397B1C69A9574F84572923BC6AB4EEB29D7
+  email = campbellr@gmail.com
 
 [mailmap]
   file = ~/.config/git/mailmap
@@ -16,7 +15,6 @@ trustExitCode = true
 
 [commit]
   verbose = true
-	gpgsign = true
 
 [color]
   ui = auto

@@ -1,22 +1,13 @@
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Add personal bin directory to PATH
-path=($HOME/bin $path)
-
-# Add python (3) stuff to $PATH
-path=($HOME/Library/Python/3.9/bin $path)
-
 # Go stuff
 path=($HOME/go/bin $path)
+path=($path /usr/local/go/bin)
 
-# diff-highlight
-path=("$(brew --prefix git)/share/git-core/contrib/diff-highlight" $path)
+# Cargo (for fd)
+path=($path /usr/lib/cargo/bin)
+path=($HOME/.cargo/bin $path)
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-
-# FZF settings
-export FZF_BASE="$HOME/.local/share/nvim/plugged/fzf"
 
 # Make fzf respect .gitignore (by making it use 'fd').
 export FZF_DEFAULT_COMMAND='fd --type f'
@@ -34,14 +25,8 @@ _fzf_compgen_dir() {
 }
 
 
-# virtualenvwrapper settings
-export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python3"
-export WORKON_HOME="$HOME/.virtualenvs"
-
-#export NODE_EXTRA_CA_CERTS=~/.certs/ms-p-pki01-ca.crt
-
 # avoid "inappropriate ioctl for device" error with gpg
-export GPG_TTY=$(tty)
+#export GPG_TTY=$(tty)
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -102,7 +87,6 @@ ENABLE_CORRECTION="false"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-brew
 colored-man-pages
 colorize
 direnv
@@ -116,7 +100,6 @@ jenv
 kubectl
 npm
 nvm
-osx
 pip
 python
 ripgrep
@@ -172,14 +155,12 @@ SAVEHIST=250000
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-#export PATH="/usr/local/opt/go@1.12/bin:$PATH"
-#eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
 
-PATH="/Users/ryancampbell/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/Users/ryancampbell/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/Users/ryancampbell/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/Users/ryancampbell/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/Users/ryancampbell/perl5"; export PERL_MM_OPT;
+PATH="/$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/$HOME/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/$HOME/perl5"; export PERL_MM_OPT;
 
 
 
@@ -255,52 +236,46 @@ bind-git-helper() {
 bind-git-helper f b t r h
 unset -f bind-git-helper
 
-# Search all jira issues (no filter)
-fzf-ji() {
-  jira issue list --limit 9999 --plain --no-headers 2>/dev/null | \
-    fzf-down --tac | \
-    awk '{ print $2 }'
-}
-
-# Search all jira bugs
-fzf-jb() {
-  jira issue list --limit 9999 --type Bug --plain --no-headers 2>/dev/null | \
-    fzf-down --tac | \
-    awk '{ print $2 }'
-}
-
-# Search all jira epics
-fzf-je() {
-  jira issue list --limit 9999 --type Epic --plain --no-headers 2>/dev/null | \
-    fzf-down --tac | \
-    awk '{ print $2 }'
-}
-
-# Search all jira Stories
-fzf-js() {
-  jira issue list --limit 9999 --type Story --plain --no-headers 2>/dev/null | \
-    fzf-down --tac | \
-    awk '{ print $2 }'
-}
-
-bind-jira-helper() {
-  local c
-  for c in $@; do
-    eval "fzf-j$c-widget() { local result=\$(fzf-j$c | join-lines); zle reset-prompt; LBUFFER+=\$result }"
-    eval "zle -N fzf-j$c-widget"
-    eval "bindkey '^j^$c' fzf-j$c-widget"
-  done
-}
-
-bind-jira-helper i b e s
-unset -f bind-jira-helper
-
-# minikube
-
-MINIKUBE_MEM=10240
-export PATH="/usr/local/opt/curl/bin:$PATH"
-
+## Search all jira issues (no filter)
+#fzf-ji() {
+#  jira issue list --limit 9999 --plain --no-headers 2>/dev/null | \
+#    fzf-down --tac | \
+#    awk '{ print $2 }'
+#}
+#
+## Search all jira bugs
+#fzf-jb() {
+#  jira issue list --limit 9999 --type Bug --plain --no-headers 2>/dev/null | \
+#    fzf-down --tac | \
+#    awk '{ print $2 }'
+#}
+#
+## Search all jira epics
+#fzf-je() {
+#  jira issue list --limit 9999 --type Epic --plain --no-headers 2>/dev/null | \
+#    fzf-down --tac | \
+#    awk '{ print $2 }'
+#}
+#
+## Search all jira Stories
+#fzf-js() {
+#  jira issue list --limit 9999 --type Story --plain --no-headers 2>/dev/null | \
+#    fzf-down --tac | \
+#    awk '{ print $2 }'
+#}
+#
+#bind-jira-helper() {
+#  local c
+#  for c in $@; do
+#    eval "fzf-j$c-widget() { local result=\$(fzf-j$c | join-lines); zle reset-prompt; LBUFFER+=\$result }"
+#    eval "zle -N fzf-j$c-widget"
+#    eval "bindkey '^j^$c' fzf-j$c-widget"
+#  done
+#}
+#
+#bind-jira-helper i b e s
+#unset -f bind-jira-helper
 
 
 # jira-cli
-eval "$(jira completion zsh)"
+# eval "$(jira completion zsh)"

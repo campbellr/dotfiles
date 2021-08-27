@@ -12,9 +12,7 @@ if !exists('g:vscode')
   Plug 'Olical/conjure'
   Plug 'liuchengxu/vim-better-default'
   " async syntax linter and fixer
-  "Plug 'dense-analysis/ale'
-  " FIXME: switch back to official repo if/when this branch gets merged
-  Plug 'liquidz/ale', {'branch': 'feature/clj_kondo_config'}
+  Plug 'dense-analysis/ale'
   Plug 'benizi/vim-automkdir'
   " Go language support for Vim
   Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
@@ -104,7 +102,7 @@ if !exists('g:vscode')
 
   Plug 'cohama/lexima.vim'
 
-  Plug 'lukas-reineke/indent-blankline.nvim', {'branch': 'lua'}
+  Plug 'lukas-reineke/indent-blankline.nvim'
 
   Plug 'windwp/nvim-ts-autotag'
 
