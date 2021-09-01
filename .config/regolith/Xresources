@@ -1,0 +1,3 @@
+i3-wm.font: pango:FiraCode Nerd Font Mono 12
+i3-wm.bar.font:	pango:FiraCode Nerd Mono 12, Material Design Icons 12
+i3-wm.bar.position: top
