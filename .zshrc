@@ -2,6 +2,9 @@
 path=($path /usr/lib/cargo/bin)
 path=($HOME/.cargo/bin $path)
 
+# Python (applications installed with --user)
+path=($HOME/.local/bin $path)
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
