@@ -24,8 +24,8 @@ _fzf_compgen_dir() {
 }
 
 
-# avoid "inappropriate ioctl for device" error with gpg
-#export GPG_TTY=$(tty)
+# Make GPG pinentry work
+export GPG_TTY=$(tty)
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
