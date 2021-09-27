@@ -121,6 +121,8 @@ if !exists('g:vscode')
 
   Plug 'freitass/todo.txt-vim'
 
+  Plug 'shumphrey/fugitive-gitlab.vim'
+
   call plug#end()
 
   let g:aniseed#env = v:true
