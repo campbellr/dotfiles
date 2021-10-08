@@ -130,34 +130,5 @@ if !exists('g:vscode')
 
 endif
 
-if exists('g:started_by_firenvim')
-  set guifont=FiraCode:h20
-
-  " Disable firenvim by default
-  let s:fc['.*'] = { 'selector': '', 'priority': 0 }
-
-  let g:dont_write = v:false
-  function! My_Write(timer) abort
-    let g:dont_write = v:false
-    write
-  endfunction
-
-  function! Delay_My_Write() abort
-    if g:dont_write
-      return
-    end
-    let g:dont_write = v:true
-    call timer_start(5000, 'My_Write')
-  endfunction
-
-  " Automatically sync all writes to the textarea (instead of needing to save
-  " with :w
-  augroup firenvim
-    au!
-    au TextChanged * ++nested call Delay_My_Write()
-    au TextChangedI * ++nested call Delay_My_Write()
-  augroup END
-
-endif
 
 au filetype markdown setlocal textwidth=80
