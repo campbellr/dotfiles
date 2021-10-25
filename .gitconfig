@@ -1,6 +1,7 @@
 [user]
   name = Ryan Campbell
-  email = campbellr@gmail.com
+  email = ryan@synctera.com
+	signingkey = 839D2668121BC591FC8531FB82ECD6842A6D9FEC
 
 [mailmap]
   file = ~/.config/git/mailmap
@@ -15,6 +16,7 @@ trustExitCode = true
 
 [commit]
   verbose = true
+	gpgsign = true
 
 [color]
   ui = auto
@@ -71,9 +73,6 @@ trustExitCode = true
 [tig]
 #  vertical-split = true
 
-[url "git@github.com:kirasystems/"]
-	insteadOf = https://github.com/kirasystems/
-
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -82,3 +81,6 @@ trustExitCode = true
 
 [pull]
 	ff = only
+
+[url "git@gitlab.com:synctera"]
+	insteadOf = https://gitlab.com/synctera
