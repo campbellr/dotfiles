@@ -26,6 +26,9 @@
 
 ;; gopls
 (lsp.gopls.setup {:on_attach on-attach
-                  :cmd ["gopls" "-remote=auto"]})
+                  :cmd ["gopls" "-remote=auto"]
+                  :init_options {:buildFlags ["-tags=integration"]}
+                  :settings: {:gopls {:buildFlags ["-tags=integration"]
+                                      :env {:GOFLAGS "-tags=integration"}}}})
 
 (lsp.terraformls.setup {:on_attach on-attach})
