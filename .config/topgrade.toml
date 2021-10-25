@@ -59,6 +59,7 @@ no_retry = true
 # Custom commands
 [commands]
 #"Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
+"zoom" = "~/bin/upgrade-zoom"
 
 [brew]
 #greedy_cask = true
