@@ -132,3 +132,7 @@ endif
 
 
 au filetype markdown setlocal textwidth=80
+
+
+au BufNewFile,BufRead git-revise-todo       setf gitrebase
+au BufNewFile,BufRead COMMIT_EDITMSG,MERGE_MSG,TAG_EDITMSG  setf gitcommit
