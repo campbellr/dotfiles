@@ -60,6 +60,7 @@ no_retry = true
 [commands]
 #"Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
 "zoom" = "~/bin/upgrade-zoom"
+"gopls" = "go install golang.org/x/tools/gopls@latest"
 
 [brew]
 #greedy_cask = true
