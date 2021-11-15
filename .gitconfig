@@ -84,3 +84,5 @@ trustExitCode = true
 
 [url "git@gitlab.com:synctera"]
 	insteadOf = https://gitlab.com/synctera
+[init]
+	defaultBranch = main
