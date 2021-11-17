@@ -1,12 +1,12 @@
 (module dotfiles.module.plugin.nvim-cmp
-  {require {nvim aniseed.nvim}})
+  {require {nvim aniseed.nvim
+            luasnip luasnip}})
 
 (set nvim.o.completeopt "menuone,noselect")
 
 (let [cmp (require :cmp)]
   (cmp.setup {:snippet {:expand (fn [args]
-                                  (let [luasnip (require :luasnip)]
-                                    (luasnip.lsp_expand (. args :body))))}
+                                    (luasnip.lsp_expand (. args :body)))}
               :mapping {"<C-f>"     (cmp.mapping (cmp.mapping.scroll_docs 3) {:i :c})
                         "<C-Space>" (cmp.mapping (cmp.mapping.complete) {:i :c})
                         "<C-y>"     cmp.config_disable

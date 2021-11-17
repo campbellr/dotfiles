@@ -20,7 +20,6 @@
   (u.nnoremap "<space>rn" "<cmd>lua vim.lsp.buf.rename()<CR>"))
 
 
-  ;; nvim-cmp
 (let [capabilities (vim.lsp.protocol.make_client_capabilities)
       capabilities (cmp_nvim_lsp.update_capabilities capabilities)]
   ;; Set up typescript/javascript LS
