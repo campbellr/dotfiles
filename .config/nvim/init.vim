@@ -92,6 +92,8 @@ if !exists('g:vscode')
   Plug 'L3MON4D3/LuaSnip'
   Plug 'saadparwaiz1/cmp_luasnip'
 
+  Plug 'ray-x/lsp_signature.nvim'
+
   Plug 'rbong/vim-flog'
 
   Plug 'chr4/nginx.vim'
