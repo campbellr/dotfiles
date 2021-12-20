@@ -8,3 +8,4 @@ install.sh skip
 .mutt/cache skip
 .config/bugwarrior/bugwarrior.log skip
 .gnupg recurse
+.config/pgcli recurse
