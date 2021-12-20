@@ -25,13 +25,13 @@
   (autocmd :FileType :vimwiki :nmap :<buffer> (.. :<LocalLeader> from) to))
 
 (defn commit-and-push []
-  (_: lcd vimwiki-dir)
+  (ex lcd vimwiki-dir)
   (let [path     (u.expand "%")
         filename (u.expand "%:t")]
     (git.git-add path)
     (git.git-commit (.. "Auto commit of " filename))
     (git.git-push "origin" "HEAD:master"))
-  (_: lcd "-"))
+  (ex lcd "-"))
 
 (augroup
   vimwiki-config

@@ -3,5 +3,5 @@
             colorizer colorizer}
    require-macros [dotfiles.macros]})
 
-(_: set :termguicolors)
+(ex set :termguicolors)
 (colorizer.setup)

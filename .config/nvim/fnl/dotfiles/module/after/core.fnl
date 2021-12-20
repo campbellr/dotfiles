@@ -7,7 +7,7 @@
 ;; NOTE: these to be here in after/ in order to not get overridden by
 ;; vim-better-defaults.
 
-(_: colorscheme :gruvbox)
+(ex colorscheme :gruvbox)
 
 (u.gset :mouse "a")
 (u.gset :termguicolors true)
@@ -31,10 +31,10 @@
 
 
 ;; Not sure why i can't set these through the options api...
-(_: set :signcolumn=yes)
-(_: set :shortmess+=c)
-(_: set :norelativenumber)
-(_: set :cursorline)
+(ex set :signcolumn=yes)
+(ex set :shortmess+=c)
+(ex set :norelativenumber)
+(ex set :cursorline)
 
 
 (autocmd :FileType :go ":setlocal shiftwidth=4")

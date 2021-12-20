@@ -9,4 +9,4 @@
   (autocmd :Syntax :fennel :syn :keyword :FennelSpecialForm sym))
 
 ;; Make line number colour less bright
-(_: highlight :LineNr :ctermfg=grey)
+(ex highlight :LineNr :ctermfg=grey)
