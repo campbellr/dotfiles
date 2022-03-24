@@ -91,6 +91,7 @@ colorize
 direnv
 docker
 docker-compose
+fasd
 fzf
 gcloud
 git
@@ -103,6 +104,7 @@ pip
 python
 ripgrep
 ssh-agent
+taskwarrior
 terraform
 tmux
 urltools

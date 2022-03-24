@@ -64,12 +64,12 @@ if !exists('g:vscode')
   " racket
   Plug 'wlangstroth/vim-racket'
   Plug 'vim-scripts/scribble.vim'
-  Plug 'guns/vim-sexp', { 'for': ['clojure', 'scheme', 'lisp', 'fennel', 'janet']}
-  Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': ['clojure', 'scheme', 'lisp', 'fennel', 'janet']}
+  Plug 'guns/vim-sexp', { 'for': [ 'clojure', 'scheme', 'lisp', 'fennel', 'janet' ]}
+  Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': [ 'clojure', 'scheme', 'lisp', 'fennel', 'janet']}
   Plug 'tpope/vim-repeat'
 
   " A faster parinfer implementation in rust
-  Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
+  Plug 'eraserhd/parinfer-rust', { 'do': 'cargo build --release', 'for': [ 'clojure', 'scheme', 'lisp', 'fennel', 'janet' ] }
   " Adds neovim :terminal support to vim-dispatch
   Plug 'radenling/vim-dispatch-neovim'
   " highlight the current word under the cursor
@@ -77,7 +77,7 @@ if !exists('g:vscode')
   Plug 'RRethy/vim-illuminate'
   Plug 'pearofducks/ansible-vim'
 
-  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': [ 'vimwiki', 'markdown', 'vim-plug' ] }
 
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'neovim/nvim-lspconfig'
@@ -132,7 +132,17 @@ if !exists('g:vscode')
 
   Plug 'freitass/todo.txt-vim'
 
+  " I could have swore i used to have syntax highlighting for free...
+  Plug 'ekalinin/Dockerfile.vim'
+
   Plug 'shumphrey/fugitive-gitlab.vim'
+
+  "Plug 'github/copilot.vim'
+
+  Plug 'tools-life/taskwiki', { 'for': [ 'vimwiki' ] }
+  Plug 'powerman/vim-plugin-AnsiEsc'
+  Plug 'farseer90718/vim-taskwarrior'
+  Plug 'majutsushi/tagbar'
 
   call plug#end()
 
@@ -142,7 +152,7 @@ if !exists('g:vscode')
 endif
 
 
-au filetype markdown setlocal textwidth=80
+"au filetype markdown setlocal textwidth=80
 
 
 au BufNewFile,BufRead git-revise-todo       setf gitrebase

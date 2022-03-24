@@ -36,7 +36,15 @@
                     :cmd ["gopls" "-remote=auto"]
                     :init_options {:buildFlags ["-tags=integration"]}
                     :settings: {:gopls {:buildFlags ["-tags=integration"]
-                                        :env {:GOFLAGS "-tags=integration"}}}})
+                                        :env {:GOFLAGS "-tags=integration"}
+                                        :analyses {:unusedparms true
+                                                   :unreachable true
+                                                   :fieldalignment true}
+                                        :staticcheck true
+                                        :codelenses {:gc_details true}
+                                        :gofumpt true
+                                        :usePlaceholders true}}})
+
 
   (lsp.terraformls.setup {:on_attach on-attach
                           :capabilities capabilities}))

@@ -13,7 +13,10 @@
 # Files
 data.location=~/.task
 
-include ~/.themes/taskwarrior/gruvbox-dark-256.theme
+#include ~/.themes/taskwarrior/gruvbox-dark-256.theme
 
-# make priority L lower than task with no priority
+# make priority L lower than task with no priority (not sure why this doesn't work anymore)
 uda.priority.values=H,M,,L
+
+urgency.uda.priority.L.coefficient=-1.0
+
