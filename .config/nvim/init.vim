@@ -58,9 +58,9 @@ if !exists('g:vscode')
   " workaround for https://github.com/neovim/neovim/issues/1822
   Plug 'bfredl/nvim-miniyank'
   Plug 'Shougo/echodoc.vim'
-  Plug 'morhetz/gruvbox'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
+  "Plug 'morhetz/gruvbox'
+  "Plug 'vim-airline/vim-airline'
+  "Plug 'vim-airline/vim-airline-themes'
   " racket
   Plug 'wlangstroth/vim-racket'
   Plug 'vim-scripts/scribble.vim'
@@ -122,7 +122,7 @@ if !exists('g:vscode')
   Plug 'kyazdani42/nvim-web-devicons'
 
   " Add missing LSP highlight groups to gruvbox theme
-  Plug 'folke/lsp-colors.nvim'
+  "Plug 'folke/lsp-colors.nvim'
 
   Plug 'pwntester/octo.nvim'
 
@@ -142,7 +142,10 @@ if !exists('g:vscode')
   Plug 'tools-life/taskwiki', { 'for': [ 'vimwiki' ] }
   Plug 'powerman/vim-plugin-AnsiEsc'
   Plug 'farseer90718/vim-taskwarrior'
-  Plug 'majutsushi/tagbar'
+
+  Plug 'nvim-lualine/lualine.nvim'
+  Plug 'simrat39/symbols-outline.nvim'
+  Plug 'ellisonleao/gruvbox.nvim'
 
   call plug#end()
 
@@ -157,3 +160,7 @@ endif
 
 au BufNewFile,BufRead git-revise-todo       setf gitrebase
 au BufNewFile,BufRead COMMIT_EDITMSG,MERGE_MSG,TAG_EDITMSG  setf gitcommit
+
+set termguicolors
+set background=dark " or light if you want light mode
+colorscheme gruvbox
