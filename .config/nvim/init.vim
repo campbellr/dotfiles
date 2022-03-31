@@ -46,8 +46,6 @@ if !exists('g:vscode')
   Plug 'vimwiki/vimwiki'
   " highlight whitespace
   Plug 'ntpeters/vim-better-whitespace'
-  " show changed lines in the gutter
-  Plug 'airblade/vim-gitgutter'
   " Rainbow parentheses!
   Plug 'junegunn/rainbow_parentheses.vim'
   " Vim motions on speed!
@@ -146,6 +144,9 @@ if !exists('g:vscode')
   Plug 'nvim-lualine/lualine.nvim'
   Plug 'simrat39/symbols-outline.nvim'
   Plug 'ellisonleao/gruvbox.nvim'
+
+  " A more modern, faster alternative to gitgutter
+  Plug 'lewis6991/gitsigns.nvim'
 
   call plug#end()
 
