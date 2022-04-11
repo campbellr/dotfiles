@@ -2,4 +2,7 @@
   {require {nvim aniseed.nvim
             lualine lualine}})
 
-(lualine.setup)
+(lualine.setup
+  {:sections {:lualine_c [:filename (fn [] (nvim.fn.nvim_treesitter#statusline 90))]}
+   :extensions [:fugitive :symbols-outline :quickfix]})
+
